@@ -19,8 +19,14 @@
   @keyframes orb-drift { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(40px, -30px) scale(1.05); } 66% { transform: translate(-30px, 40px) scale(0.95); } }
 
   .gradient-text { background: linear-gradient(135deg, #34D399, #06B6D4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .glass-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; backdrop-filter: blur(12px); padding: 36px; transition: all 0.4s; }
-  .glass-card:hover { background: var(--bg-card-hover); border-color: rgba(52,211,153,0.3); transform: translateY(-4px); }
+  .glass-card { background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%); border: 1px solid var(--border); border-radius: 20px; backdrop-filter: blur(16px); transition: all 0.4s; box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 10px 30px rgba(0,0,0,0.2); padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+  .glass-card:hover { border-color: rgba(96,165,250,0.4); transform: translateY(-8px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 20px 40px rgba(0,0,0,0.5); }
+  .glass-card-img { height: 200px; width: 100%; position: relative; }
+  .glass-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .glass-card:hover .glass-card-img img { transform: scale(1.05); }
+  .glass-card-img::after { content: \'\'; position: absolute; inset: 0; background: linear-gradient(to top, rgba(3,7,18,1) 0%, transparent 100%); }
+  .glass-card-content { padding: 32px; flex-grow: 1; }
+  .glass-card-icon { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-top: -60px; margin-bottom: 20px; position: relative; z-index: 10; background: #0F172A; border: 1px solid var(--border); box-shadow: 0 8px 16px rgba(0,0,0,0.4); }
   .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(52,211,153,0.12); border: 1px solid rgba(52,211,153,0.25); color: #34D399; padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 24px;}
   
   nav#navbar { position: fixed; top: 0; width: 100%; z-index: 100; padding: 0 48px; transition: all 0.4s; }
@@ -100,29 +106,48 @@
 
   <div class="grid-2">
     <div class="glass-card reveal delay-1">
-      <div class="icon-wrap"><span class="material-symbols-outlined">verified_user</span></div>
-      <div class="card-title">100% HIPAA Compliant</div>
-      <p class="card-desc">Every action we take, from data ingestion to claim submission, is governed by strict, audited HIPAA compliance protocols to ensure zero risk to your practice.</p>
+      <div class="glass-card-img">
+        <img src="https://images.pexels.com/photos/5327584/pexels-photo-5327584.jpeg?auto=compress&cs=tinysrgb&w=600" alt="100% HIPAA Compliant" />
+      </div>
+      <div class="glass-card-content">
+        <div class="glass-card-icon"><span class="material-symbols-outlined">verified_user</span></div>
+        <div class="card-title">100% HIPAA Compliant</div>
+        <p class="card-desc">Every action we take, from data ingestion to claim submission, is governed by strict, audited HIPAA compliance protocols to ensure zero risk to your practice.</p>
+      </div>
     </div>
     
     <div class="glass-card reveal delay-2">
-      <div class="icon-wrap" style="background: rgba(37,99,235,0.15); color: #60A5FA;"><span class="material-symbols-outlined">military_tech</span></div>
-      <div class="card-title">Certified Expert Coders</div>
-      <p class="card-desc">Our team comprises AAPC and AHIMA certified coders who undergo continuous education to stay ahead of the ever-changing ICD-10 and CPT coding guidelines.</p>
+      <div class="glass-card-img">
+        <img src="https://images.pexels.com/photos/8460157/pexels-photo-8460157.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Certified Expert Coders" />
+      </div>
+      <div class="glass-card-content">
+        <div class="glass-card-icon" style="background: rgba(37,99,235,0.15); color: #60A5FA;"><span class="material-symbols-outlined">military_tech</span></div>
+        <div class="card-title">Certified Expert Coders</div>
+        <p class="card-desc">Our team comprises AAPC and AHIMA certified coders who undergo continuous education to stay ahead of the ever-changing ICD-10 and CPT coding guidelines.</p>
+      </div>
     </div>
 
     <div class="glass-card reveal delay-1">
-      <div class="icon-wrap" style="background: rgba(245,158,11,0.15); color: #FCD34D;"><span class="material-symbols-outlined">bolt</span></div>
-      <div class="card-title">Rapid Turnaround</div>
-      <p class="card-desc">Time is money. We guarantee 24-48 hour turnaround on charge entries and claim submissions, dramatically accelerating your days in Accounts Receivable.</p>
+      <div class="glass-card-img">
+        <img src="https://images.pexels.com/photos/3786157/pexels-photo-3786157.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Rapid Turnaround" />
+      </div>
+      <div class="glass-card-content">
+        <div class="glass-card-icon" style="background: rgba(245,158,11,0.15); color: #FCD34D;"><span class="material-symbols-outlined">bolt</span></div>
+        <div class="card-title">Rapid Turnaround</div>
+        <p class="card-desc">Time is money. We guarantee 24-48 hour turnaround on charge entries and claim submissions, dramatically accelerating your days in Accounts Receivable.</p>
+      </div>
     </div>
 
     <div class="glass-card reveal delay-2">
-      <div class="icon-wrap" style="background: rgba(139,92,246,0.15); color: #A78BFA;"><span class="material-symbols-outlined">handshake</span></div>
-      <div class="card-title">Transparent Partnership</div>
-      <p class="card-desc">No hidden fees, no black-box operations. We act as an extension of your own staff, providing total transparency into what we do and how we do it.</p>
+      <div class="glass-card-img">
+        <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Transparent Partnership" />
+      </div>
+      <div class="glass-card-content">
+        <div class="glass-card-icon" style="background: rgba(139,92,246,0.15); color: #A78BFA;"><span class="material-symbols-outlined">handshake</span></div>
+        <div class="card-title">Transparent Partnership</div>
+        <p class="card-desc">No hidden fees, no black-box operations. We act as an extension of your own staff, providing total transparency into what we do and how we do it.</p>
+      </div>
     </div>
-  </div>
 </main>
 
 <footer>
