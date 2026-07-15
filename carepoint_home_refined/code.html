@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+import os
+
+new_html = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -9,20 +11,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --bg-base: #030712;
-    --bg-card: rgba(255,255,255,0.03);
-    --bg-card-hover: rgba(255,255,255,0.06);
-    --border: rgba(255,255,255,0.08);
-    --border-bright: rgba(99,179,237,0.3);
-    --text-primary: #F8FAFC;
-    --text-secondary: #94A3B8;
-    --text-muted: #475569;
-    --blue-start: #2563EB;
-    --blue-end: #0EA5E9;
-    --cyan: #06B6D4;
-    --mint: #10B981;
-    --glow-blue: rgba(37,99,235,0.35);
-    --glow-cyan: rgba(6,182,212,0.25);
+    --bg-base: #FFFFFF;
+    --bg-light: #F7FBFF;
+    --bg-card: #FFFFFF;
+    --border: rgba(0,0,0,0.06);
+    --border-hover: rgba(15, 108, 189, 0.2);
+    --text-primary: #1E293B;
+    --text-secondary: #475569;
+    --text-muted: #64748B;
+    --primary: #0F6CBD;
+    --secondary: #3AA6FF;
+    --accent: #EAF6FF;
+    --glow: rgba(15, 108, 189, 0.15);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,55 +34,12 @@
     color: var(--text-primary);
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
-    antialiased: true;
-  }
-
-  /* ── Animated Orb Background ─────────────────────────────── */
-  .orb-container {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
-  }
-  .orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.15;
-    animation: orb-drift 18s ease-in-out infinite;
-  }
-  .orb-1 { width: 600px; height: 600px; background: #2563EB; top: -200px; left: -200px; animation-delay: 0s; }
-  .orb-2 { width: 500px; height: 500px; background: #06B6D4; bottom: -150px; right: -150px; animation-delay: -6s; }
-  .orb-3 { width: 400px; height: 400px; background: #10B981; top: 40%; left: 50%; animation-delay: -12s; }
-
-  @keyframes orb-drift {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(40px, -30px) scale(1.05); }
-    66% { transform: translate(-30px, 40px) scale(0.95); }
-  }
-
-  /* ── Grid Overlay ─────────────────────────────────────────── */
-  .grid-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-    background-size: 60px 60px;
+    -webkit-font-smoothing: antialiased;
   }
 
   /* ── Typography ───────────────────────────────────────────── */
   .gradient-text {
-    background: linear-gradient(135deg, #60A5FA, #06B6D4, #34D399);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .gradient-text-warm {
-    background: linear-gradient(135deg, #F8FAFC 30%, #60A5FA);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -95,14 +52,13 @@
     width: 100%;
     z-index: 100;
     padding: 0 48px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   nav#navbar.scrolled {
-    background: rgba(3,7,18,0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    box-shadow: 0 4px 32px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.04);
   }
   .nav-inner {
     max-width: 1280px;
@@ -116,10 +72,7 @@
     font-family: 'Manrope', sans-serif;
     font-weight: 800;
     font-size: 20px;
-    background: linear-gradient(135deg, #60A5FA, #06B6D4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--primary);
     letter-spacing: -0.02em;
   }
   .nav-links {
@@ -138,24 +91,22 @@
     position: relative;
   }
   .nav-links a:hover, .nav-links a.active {
-    color: var(--text-primary);
-    background: rgba(255,255,255,0.06);
+    color: var(--primary);
+    background: var(--accent);
   }
   .nav-cta {
-    background: linear-gradient(135deg, #2563EB, #0EA5E9);
+    background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
     color: white !important;
     border-radius: 10px;
-    padding: 10px 22px !important;
+    padding: 10px 24px !important;
     font-weight: 600 !important;
     font-size: 14px !important;
-    box-shadow: 0 0 20px rgba(37,99,235,0.4);
+    box-shadow: 0 4px 12px var(--glow);
     transition: all 0.3s !important;
   }
   .nav-cta:hover {
-    background: linear-gradient(135deg, #1D4ED8, #0284C7) !important;
-    box-shadow: 0 0 32px rgba(37,99,235,0.6) !important;
-    transform: translateY(-1px) !important;
-    color: white !important;
+    transform: scale(1.02) !important;
+    box-shadow: 0 8px 20px rgba(15, 108, 189, 0.3) !important;
   }
 
   /* ── Buttons ──────────────────────────────────────────────── */
@@ -163,86 +114,116 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: linear-gradient(135deg, #2563EB, #0EA5E9);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
-    padding: 14px 28px;
+    padding: 16px 32px;
     border-radius: 12px;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 16px;
     text-decoration: none;
     border: none;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 0 24px rgba(37,99,235,0.4);
-    position: relative;
-    overflow: hidden;
+    box-shadow: 0 8px 24px var(--glow);
   }
-  .btn-primary::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
+  .btn-primary:hover {
+    transform: scale(1.02) translateY(-2px);
+    box-shadow: 0 12px 32px rgba(15, 108, 189, 0.3);
   }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(37,99,235,0.5); }
-  .btn-primary:hover::before { opacity: 1; }
 
   .btn-secondary {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255,255,255,0.06);
+    background: #FFFFFF;
     color: var(--text-primary);
-    padding: 14px 28px;
+    padding: 16px 32px;
     border-radius: 12px;
-    font-weight: 500;
-    font-size: 15px;
+    font-weight: 600;
+    font-size: 16px;
     text-decoration: none;
     border: 1px solid var(--border);
     cursor: pointer;
     transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
   }
-  .btn-secondary:hover { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.15); transform: translateY(-1px); }
+  .btn-secondary:hover {
+    background: var(--bg-light);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+  }
 
   /* ── Cards ────────────────────────────────────────────────── */
-  .glass-card {
+  .professional-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 20px;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    height: 100%;
+  }
+  .professional-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+  }
+  .professional-card-img {
+    height: 220px;
+    width: 100%;
     position: relative;
     overflow: hidden;
   }
-  .glass-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 60%);
-    pointer-events: none;
+  .professional-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
   }
-  .glass-card:hover {
-    background: var(--bg-card-hover);
-    border-color: rgba(96,165,250,0.25);
-    transform: translateY(-6px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(37,99,235,0.1);
+  .professional-card:hover .professional-card-img img {
+    transform: scale(1.05);
   }
+  .professional-card-content {
+    padding: 40px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF;
+    position: relative;
+  }
+  .professional-card-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -72px;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 10;
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+    color: var(--primary);
+  }
+  .professional-card-icon .material-symbols-outlined { font-size: 32px; }
 
   /* ── Badge ────────────────────────────────────────────────── */
   .badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: rgba(37,99,235,0.12);
-    border: 1px solid rgba(37,99,235,0.25);
-    color: #60A5FA;
-    padding: 6px 14px;
+    background: var(--accent);
+    color: var(--primary);
+    padding: 8px 16px;
     border-radius: 999px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
   }
 
@@ -254,95 +235,89 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 120px 48px 80px;
+    padding: 160px 48px 100px;
     position: relative;
+    background: radial-gradient(circle at top right, var(--bg-light), var(--bg-base) 60%);
   }
   .hero-inner {
     max-width: 1280px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.1fr 0.9fr;
     gap: 80px;
     align-items: center;
     width: 100%;
   }
   .hero-headline {
     font-family: 'Manrope', sans-serif;
-    font-size: clamp(40px, 5vw, 60px);
+    font-size: clamp(48px, 5vw, 64px);
     font-weight: 900;
-    line-height: 1.1;
+    line-height: 1.15;
     letter-spacing: -0.03em;
     margin-bottom: 24px;
+    color: var(--text-primary);
   }
   .hero-sub {
-    font-size: 18px;
-    line-height: 1.7;
+    font-size: 19px;
+    line-height: 1.8;
     color: var(--text-secondary);
-    margin-bottom: 40px;
-    max-width: 480px;
+    margin-bottom: 48px;
+    max-width: 520px;
   }
   .hero-badges {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 40px;
+    gap: 16px;
+    margin-top: 48px;
   }
   .trust-badge {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255,255,255,0.04);
+    background: #FFFFFF;
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 8px 16px;
-    font-size: 13px;
-    font-weight: 500;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
     color: var(--text-secondary);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
   }
-  .trust-badge .icon { color: #34D399; font-size: 16px; }
+  .trust-badge .icon { color: var(--primary); font-size: 18px; }
 
   /* ── Floating Metric Cards ────────────────────────────────── */
-  .metrics-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
   .metric-card {
-    background: rgba(255,255,255,0.04);
+    background: rgba(255,255,255,0.95);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 24px;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
     transition: all 0.4s;
     animation: float-card 6s ease-in-out infinite;
   }
-  .metric-card:nth-child(2) { animation-delay: -2s; }
-  .metric-card:nth-child(3) { animation-delay: -4s; }
-  .metric-card:nth-child(4) { animation-delay: -1s; }
-  .metric-card:hover { border-color: rgba(96,165,250,0.3); box-shadow: 0 8px 32px rgba(37,99,235,0.15); }
+  .metric-card:nth-child(2) { animation-delay: -3s; }
 
   @keyframes float-card {
     0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
+    50% { transform: translateY(-12px); }
   }
 
   .metric-value {
     font-family: 'Manrope', sans-serif;
     font-size: 32px;
     font-weight: 900;
-    background: linear-gradient(135deg, #60A5FA, #06B6D4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--primary);
     line-height: 1;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
-  .metric-label { font-size: 13px; color: var(--text-secondary); }
-  .metric-icon { font-size: 20px; margin-bottom: 12px; }
+  .metric-label { font-size: 14px; font-weight: 500; color: var(--text-secondary); }
+  .metric-icon { font-size: 24px; margin-bottom: 12px; color: var(--secondary); }
 
   /* ── Stats Section ────────────────────────────────────────── */
   .stats-section {
     padding: 80px 48px;
+    background: var(--bg-light);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
@@ -356,43 +331,42 @@
   }
   .stat-number {
     font-family: 'Manrope', sans-serif;
-    font-size: 48px;
+    font-size: 52px;
     font-weight: 900;
-    background: linear-gradient(135deg, #F8FAFC 30%, #60A5FA);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--primary);
     letter-spacing: -0.03em;
     line-height: 1;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
   .stat-label {
-    font-size: 13px;
-    color: var(--text-muted);
+    font-size: 14px;
+    color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   /* ── Services Section ─────────────────────────────────────── */
   .services-section {
     padding: 120px 48px;
+    background: #FFFFFF;
   }
-  .section-header { text-align: center; margin-bottom: 72px; }
+  .section-header { text-align: center; margin-bottom: 80px; }
   .section-title {
     font-family: 'Manrope', sans-serif;
-    font-size: clamp(32px, 4vw, 44px);
-    font-weight: 800;
+    font-size: clamp(36px, 4vw, 48px);
+    font-weight: 900;
     letter-spacing: -0.03em;
-    line-height: 1.15;
-    margin: 12px 0 16px;
+    line-height: 1.2;
+    margin: 16px 0 20px;
+    color: var(--text-primary);
   }
   .section-sub {
-    font-size: 17px;
+    font-size: 18px;
     color: var(--text-secondary);
-    max-width: 560px;
+    max-width: 600px;
     margin: 0 auto;
-    line-height: 1.7;
+    line-height: 1.8;
   }
 
   .services-grid {
@@ -400,110 +374,69 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 40px;
   }
-  .service-card {
-    padding: 36px;
-    cursor: default;
-  }
-  .service-card.large {
-    grid-column: span 2;
-    display: flex;
-    gap: 32px;
-    align-items: flex-start;
-  }
-  .service-icon-wrap {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-bottom: 20px;
-  }
-  .service-card.large .service-icon-wrap { margin-bottom: 0; }
-  .icon-blue { background: rgba(37,99,235,0.15); }
-  .icon-cyan { background: rgba(6,182,212,0.15); }
-  .icon-mint { background: rgba(16,185,129,0.15); }
-  .icon-violet { background: rgba(139,92,246,0.15); }
-  .icon-amber { background: rgba(245,158,11,0.15); }
-  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-  .icon-blue .material-symbols-outlined { color: #60A5FA; }
-  .icon-cyan .material-symbols-outlined { color: #22D3EE; }
-  .icon-mint .material-symbols-outlined { color: #34D399; }
-  .icon-violet .material-symbols-outlined { color: #A78BFA; }
-  .icon-amber .material-symbols-outlined { color: #FCD34D; }
   .service-title {
     font-family: 'Manrope', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 10px;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 16px;
     color: var(--text-primary);
   }
-  .service-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+  .service-desc { font-size: 16px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 32px; flex-grow: 1; }
   .service-link {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    color: #60A5FA;
-    font-size: 14px;
-    font-weight: 500;
+    gap: 8px;
+    color: var(--primary);
+    font-size: 15px;
+    font-weight: 700;
     text-decoration: none;
-    margin-top: 20px;
-    transition: gap 0.25s;
+    transition: gap 0.25s, color 0.25s;
+    margin-top: auto;
   }
-  .service-link:hover { gap: 10px; }
-  .glow-line {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(96,165,250,0.5), transparent);
-    margin: 48px 0;
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  .service-link:hover { gap: 12px; color: var(--secondary); }
 
   /* ── CTA Section ──────────────────────────────────────────── */
   .cta-section {
     padding: 120px 48px;
     text-align: center;
     position: relative;
-    overflow: hidden;
+    background: var(--bg-light);
   }
-  .cta-glow {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(37,99,235,0.2), transparent 70%);
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
+  .cta-card {
+    background: #FFFFFF;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+    position: relative;
+    z-index: 10;
   }
   .cta-title {
     font-family: 'Manrope', sans-serif;
-    font-size: clamp(36px, 5vw, 56px);
+    font-size: clamp(40px, 5vw, 52px);
     font-weight: 900;
     letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 20px;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    color: var(--text-primary);
   }
   .cta-sub {
-    font-size: 18px;
+    font-size: 19px;
     color: var(--text-secondary);
-    max-width: 520px;
-    margin: 0 auto 40px;
-    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto 48px;
+    line-height: 1.8;
   }
 
   /* ── Footer ───────────────────────────────────────────────── */
   footer {
-    background: rgba(0,0,0,0.4);
+    background: #FFFFFF;
     border-top: 1px solid var(--border);
-    padding: 64px 48px 40px;
-    position: relative;
-    z-index: 1;
+    padding: 80px 48px 40px;
   }
   .footer-inner {
     max-width: 1280px;
@@ -513,28 +446,28 @@
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 48px;
-    margin-bottom: 48px;
+    margin-bottom: 64px;
   }
-  .footer-brand { font-family: 'Manrope', sans-serif; font-size: 18px; font-weight: 800; }
-  .footer-tagline { font-size: 14px; color: var(--text-muted); margin-top: 10px; line-height: 1.7; }
+  .footer-brand { font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 900; color: var(--primary); }
+  .footer-tagline { font-size: 15px; color: var(--text-secondary); margin-top: 16px; line-height: 1.8; }
   .footer-col-title {
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 13px;
+    font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--text-muted);
-    margin-bottom: 20px;
+    color: var(--text-primary);
+    margin-bottom: 24px;
   }
-  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-  .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--text-primary); }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+  .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--primary); }
   .footer-bottom {
     border-top: 1px solid var(--border);
     padding-top: 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 13px;
+    font-size: 14px;
     color: var(--text-muted);
   }
 
@@ -542,15 +475,13 @@
   .reveal {
     opacity: 0;
     transform: translateY(32px);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
-  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+  .reveal-delay-3 { transition-delay: 0.45s; }
 
-  /* ── Hero entrance ────────────────────────────────────────── */
   .hero-animate {
     opacity: 0;
     transform: translateY(40px);
@@ -560,65 +491,32 @@
   .hero-animate-3 { animation-delay: 0.3s; }
   .hero-animate-4 { animation-delay: 0.45s; }
   .hero-animate-5 { animation-delay: 0.6s; }
-  @keyframes hero-in {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── Counter animation ────────────────────────────────────── */
-  .counter { display: inline-block; }
-
-  /* ── Shimmer border ───────────────────────────────────────── */
-  .shimmer-border {
-    position: relative;
-  }
-  .shimmer-border::after {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: 21px;
-    background: linear-gradient(90deg, transparent 0%, rgba(96,165,250,0.4) 50%, transparent 100%);
-    background-size: 200% 100%;
-    animation: shimmer 3s linear infinite;
-    pointer-events: none;
-    z-index: -1;
-  }
-  @keyframes shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-  }
+  @keyframes hero-in { to { opacity: 1; transform: translateY(0); } }
 
   /* ── Responsive ───────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-inner { grid-template-columns: 1fr; gap: 60px; }
+    .hero { padding-top: 140px; }
+  }
   @media (max-width: 768px) {
-    nav#navbar { padding: 0 20px; }
+    nav#navbar { padding: 0 24px; }
     .nav-links { display: none; }
-    .hero { padding: 100px 20px 60px; }
-    .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-    .metrics-grid { grid-template-columns: 1fr 1fr; }
-    .stats-section { padding: 60px 20px; }
-    .stats-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-    .services-section { padding: 80px 20px; }
+    .hero { padding: 120px 24px 80px; }
+    .stats-section, .services-section, .cta-section { padding: 80px 24px; }
     .services-grid { grid-template-columns: 1fr; }
-    .service-card.large { grid-column: span 1; flex-direction: column; }
-    .cta-section { padding: 80px 20px; }
-    footer { padding: 48px 20px 32px; }
+    .stats-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
+    footer { padding: 64px 24px 32px; }
   }
 </style>
 </head>
 <body>
 
-<!-- Animated background -->
-<div class="orb-container">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-</div>
-<div class="grid-overlay"></div>
-
 <!-- ── Navigation ───────────────────────────────────────────── -->
 <nav id="navbar">
   <div class="nav-inner">
-    <div class="nav-logo">CarePoint Medical Billing</div>
+    <div class="nav-logo">CarePoint Medical</div>
     <div class="nav-links">
       <a href="/carepoint_home_refined/code.html" class="active">Home</a>
       <a href="/carepoint_about_us_refined/code.html">About</a>
@@ -638,48 +536,47 @@
     <!-- Left -->
     <div>
       <div class="badge hero-animate">
-        <span class="material-symbols-outlined" style="font-size:14px">verified_user</span>
-        HIPAA Compliant · Certified Experts
+        <span class="material-symbols-outlined" style="font-size:16px">verified_user</span>
+        Trusted by 500+ Providers
       </div>
       <h1 class="hero-headline hero-animate hero-animate-2">
-        Transforming<br/>
-        <span class="gradient-text">Medical Billing</span><br/>
-        Into Faster Revenue.
+        Optimize Your <br/>
+        <span class="gradient-text">Revenue Cycle</span><br/>
+        With Precision.
       </h1>
       <p class="hero-sub hero-animate hero-animate-3">
-        Helping healthcare providers maximize reimbursements, reduce claim denials, and streamline revenue cycle management with enterprise-grade precision.
+        Helping healthcare organizations maximize reimbursements, eliminate claim denials, and streamline financial operations with enterprise-grade medical billing solutions.
       </p>
       <div style="display:flex; gap:16px; flex-wrap:wrap;" class="hero-animate hero-animate-4">
         <a href="/carepoint_contact_us_refined/code.html" class="btn-primary">
           Schedule Free Consultation
-          <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span>
+          <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span>
         </a>
         <a href="/carepoint_our_services_refined/code.html" class="btn-secondary">
           Explore Services
         </a>
       </div>
       <div class="hero-badges hero-animate hero-animate-5">
-        <div class="trust-badge"><span class="material-symbols-outlined icon">verified_user</span> HIPAA Compliant</div>
-        <div class="trust-badge"><span class="material-symbols-outlined icon">lock</span> Secure Infrastructure</div>
-        <div class="trust-badge"><span class="material-symbols-outlined icon">military_tech</span> Certified Experts</div>
+        <div class="trust-badge"><span class="material-symbols-outlined icon">health_and_safety</span> HIPAA Compliant</div>
+        <div class="trust-badge"><span class="material-symbols-outlined icon">shield_with_heart</span> Secure Infrastructure</div>
+        <div class="trust-badge"><span class="material-symbols-outlined icon">medical_services</span> Certified Experts</div>
       </div>
     </div>
 
     <!-- Right — Image with Floating Metrics -->
     <div class="hero-image-container hero-animate hero-animate-3" style="position: relative;">
-      <div style="border-radius: 24px; overflow: hidden; position: relative; border: 1px solid var(--border); box-shadow: 0 20px 60px rgba(0,0,0,0.6);">
-        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=800" alt="Healthcare Professional" style="width: 100%; height: 500px; object-fit: cover; display: block; filter: brightness(0.85);" />
-        <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(3,7,18,0.6) 0%, transparent 50%, rgba(37,99,235,0.2) 100%);"></div>
+      <div style="border-radius: 24px; overflow: hidden; position: relative; border: 1px solid var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.08); height: 560px;">
+        <img src="https://images.pexels.com/photos/5214958/pexels-photo-5214958.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Healthcare Professional" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
       </div>
       
-      <div class="metric-card shimmer-border" style="position: absolute; bottom: 30px; left: -30px; background: rgba(3,7,18,0.75); width: 220px;">
-        <div class="metric-icon"><span class="material-symbols-outlined" style="color:#60A5FA">trending_up</span></div>
+      <div class="metric-card" style="position: absolute; bottom: 40px; left: -40px; width: 240px;">
+        <div class="metric-icon"><span class="material-symbols-outlined">trending_up</span></div>
         <div class="metric-value">$500M+</div>
         <div class="metric-label">Claims Processed</div>
       </div>
       
-      <div class="metric-card" style="position: absolute; top: 40px; right: -30px; background: rgba(3,7,18,0.75); width: 200px;">
-        <div class="metric-icon"><span class="material-symbols-outlined" style="color:#34D399">task_alt</span></div>
+      <div class="metric-card" style="position: absolute; top: 60px; right: -30px; width: 220px;">
+        <div class="metric-icon"><span class="material-symbols-outlined">task_alt</span></div>
         <div class="metric-value">99%</div>
         <div class="metric-label">First-Pass Approval</div>
       </div>
@@ -704,7 +601,7 @@
     </div>
     <div>
       <div class="stat-number"><span class="counter" data-target="20">0</span>+</div>
-      <div class="stat-label">Years Combined Experience</div>
+      <div class="stat-label">Years Experience</div>
     </div>
   </div>
 </div>
@@ -712,87 +609,95 @@
 <!-- ── Services ──────────────────────────────────────────────── -->
 <section class="services-section">
   <div class="section-header reveal">
-    <div class="badge">Our Services</div>
+    <div class="badge" style="margin-bottom: 20px;">Our Services</div>
     <h2 class="section-title">Comprehensive Revenue Solutions</h2>
-    <p class="section-sub">End-to-end medical billing services designed to simplify your operations and maximize your bottom line.</p>
+    <p class="section-sub">End-to-end medical billing services designed to simplify your operations, ensure compliance, and maximize your financial health.</p>
   </div>
 
   <div class="services-grid">
-    <div class="glass-card reveal">
-      <div class="glass-card-img">
-        <img src="/assets/img/med_abstract_data.png" alt="Revenue Cycle Management" />
+    <div class="professional-card reveal">
+      <div class="professional-card-img">
+        <img src="https://images.pexels.com/photos/8376277/pexels-photo-8376277.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Revenue Cycle Management" />
       </div>
-      <div class="glass-card-content">
-        <div class="glass-card-icon" style="color: #60A5FA;"><span class="material-symbols-outlined">receipt_long</span></div>
-        <div class="service-title" style="font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 12px;">Revenue Cycle Management</div>
-        <p class="service-desc" style="font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px;">Complete oversight of your financial lifecycle. We manage patient registration, coding, and claims submission to ensure maximum reimbursement.</p>
-        <a href="/carepoint_our_services_refined/code.html" class="service-link">Learn More <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span></a>
-      </div>
-    </div>
-
-    <div class="glass-card reveal reveal-delay-1">
-      <div class="glass-card-img">
-        <img src="/assets/img/med_abstract_network.png" alt="Medical Billing" />
-      </div>
-      <div class="glass-card-content">
-        <div class="glass-card-icon" style="color: #22D3EE;"><span class="material-symbols-outlined">healing</span></div>
-        <div class="service-title" style="font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 12px;">Medical Billing</div>
-        <p class="service-desc" style="font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px;">Accurate charge entry, precise coding, and timely claim submissions to maximize reimbursements.</p>
-        <a href="/carepoint_our_services_refined/code.html" class="service-link">Learn More <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span></a>
+      <div class="professional-card-content">
+        <div class="professional-card-icon"><span class="material-symbols-outlined">clinical_notes</span></div>
+        <div class="service-title">Revenue Cycle Management</div>
+        <p class="service-desc">Complete oversight of your financial lifecycle. We manage patient registration, precise coding, and meticulous claims submission to ensure maximum reimbursement.</p>
+        <a href="/carepoint_our_services_refined/code.html" class="service-link">Learn More <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span></a>
       </div>
     </div>
 
-    <div class="glass-card reveal reveal-delay-2">
-      <div class="glass-card-img">
-        <img src="/assets/img/med_abstract_security.png" alt="Insurance Verification" />
+    <div class="professional-card reveal reveal-delay-1">
+      <div class="professional-card-img">
+        <img src="https://images.pexels.com/photos/4386339/pexels-photo-4386339.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Medical Billing" />
       </div>
-      <div class="glass-card-content">
-        <div class="glass-card-icon" style="color: #34D399;"><span class="material-symbols-outlined">fact_check</span></div>
-        <div class="service-title" style="font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 12px;">Insurance Verification</div>
-        <p class="service-desc" style="font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px;">Proactive eligibility checks to prevent denials before the patient walks through the door.</p>
-        <a href="/carepoint_our_services_refined/code.html" class="service-link">Learn More <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span></a>
-      </div>
-    </div>
-
-    <div class="glass-card reveal">
-      <div class="glass-card-img">
-        <img src="/assets/img/med_abstract_clinical.png" alt="Denial Management" />
-      </div>
-      <div class="glass-card-content">
-        <div class="glass-card-icon" style="color: #FCD34D;"><span class="material-symbols-outlined">warning</span></div>
-        <div class="service-title" style="font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 12px;">Denial Management</div>
-        <p class="service-desc" style="font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px;">Aggressive follow-up and strategic appeals to recover revenue from delayed or denied claims.</p>
-        <a href="/carepoint_our_services_refined/code.html" class="service-link">Learn More <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span></a>
+      <div class="professional-card-content">
+        <div class="professional-card-icon"><span class="material-symbols-outlined">receipt_long</span></div>
+        <div class="service-title">Medical Billing</div>
+        <p class="service-desc">Accurate charge entry, precise CPT/ICD-10 coding, and timely claim submissions to drastically reduce errors and accelerate your payment cycles.</p>
+        <a href="/carepoint_our_services_refined/code.html" class="service-link">Learn More <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span></a>
       </div>
     </div>
 
-    <div class="glass-card reveal reveal-delay-1">
-      <div class="glass-card-img">
-        <img src="/assets/img/med_abstract_security.png" alt="Credentialing" />
+    <div class="professional-card reveal reveal-delay-2">
+      <div class="professional-card-img">
+        <img src="https://images.pexels.com/photos/5327584/pexels-photo-5327584.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Insurance Verification" />
       </div>
-      <div class="glass-card-content">
-        <div class="glass-card-icon" style="color: #A78BFA;"><span class="material-symbols-outlined">badge</span></div>
-        <div class="service-title" style="font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 12px;">Credentialing</div>
-        <p class="service-desc" style="font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px;">Streamlined provider enrollment and credentialing maintenance to ensure you stay in-network.</p>
-        <a href="/carepoint_our_services_refined/code.html" class="service-link">Learn More <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span></a>
+      <div class="professional-card-content">
+        <div class="professional-card-icon"><span class="material-symbols-outlined">health_and_safety</span></div>
+        <div class="service-title">Insurance Verification</div>
+        <p class="service-desc">Proactive eligibility checks and prior authorizations to prevent claim denials before the patient even walks through the clinic door.</p>
+        <a href="/carepoint_our_services_refined/code.html" class="service-link">Learn More <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span></a>
+      </div>
+    </div>
+
+    <div class="professional-card reveal">
+      <div class="professional-card-img">
+        <img src="https://images.pexels.com/photos/5214955/pexels-photo-5214955.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Denial Management" />
+      </div>
+      <div class="professional-card-content">
+        <div class="professional-card-icon"><span class="material-symbols-outlined">medical_information</span></div>
+        <div class="service-title">Denial Management</div>
+        <p class="service-desc">Aggressive follow-up and strategic appeals by certified experts to recover revenue from delayed, rejected, or improperly denied claims.</p>
+        <a href="/carepoint_our_services_refined/code.html" class="service-link">Learn More <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span></a>
+      </div>
+    </div>
+
+    <div class="professional-card reveal reveal-delay-1">
+      <div class="professional-card-img">
+        <img src="https://images.pexels.com/photos/8460157/pexels-photo-8460157.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Credentialing" />
+      </div>
+      <div class="professional-card-content">
+        <div class="professional-card-icon"><span class="material-symbols-outlined">badge</span></div>
+        <div class="service-title">Credentialing</div>
+        <p class="service-desc">Streamlined provider enrollment, re-credentialing, and contracting maintenance to ensure your physicians stay in-network with key payers.</p>
+        <a href="/carepoint_our_services_refined/code.html" class="service-link">Learn More <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span></a>
+      </div>
+    </div>
+    
+    <div class="professional-card reveal reveal-delay-2">
+      <div class="professional-card-img">
+        <img src="https://images.pexels.com/photos/7567443/pexels-photo-7567443.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Healthcare Analytics" />
+      </div>
+      <div class="professional-card-content">
+        <div class="professional-card-icon"><span class="material-symbols-outlined">analytics</span></div>
+        <div class="service-title">Financial Analytics</div>
+        <p class="service-desc">Transparent, real-time reporting dashboards that provide actionable insights into your practice's financial health and performance metrics.</p>
+        <a href="/carepoint_our_services_refined/code.html" class="service-link">Learn More <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span></a>
       </div>
     </div>
   </div>
-
-  <div class="glow-line"></div>
 </section>
 
 <!-- ── CTA ───────────────────────────────────────────────────── -->
-<section class="cta-section reveal" style="background: url('https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover fixed; position: relative;">
-  <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(3,7,18,1) 0%, rgba(3,7,18,0.8) 50%, rgba(3,7,18,1) 100%);"></div>
-  <div class="cta-glow"></div>
-  <div style="position:relative; z-index:1; padding: 40px; background: rgba(3,7,18,0.6); backdrop-filter: blur(12px); border-radius: 24px; border: 1px solid var(--border); max-width: 800px; margin: 0 auto;">
+<section class="cta-section reveal">
+  <div class="cta-card">
     <div class="badge" style="margin-bottom:24px;">Ready to Grow?</div>
-    <h2 class="cta-title gradient-text-warm">Let's Optimize Your<br/>Revenue Cycle.</h2>
-    <p class="cta-sub">Stop leaving money on the table. Partner with CarePoint for transparent, efficient, and high-yield medical billing solutions.</p>
-    <a href="/carepoint_contact_us_refined/code.html" class="btn-primary" style="font-size:17px; padding:16px 36px; margin: 0 auto; display:inline-flex; box-shadow: 0 0 48px rgba(37,99,235,0.5);">
+    <h2 class="cta-title">Let's Optimize Your<br/><span class="gradient-text">Revenue Cycle.</span></h2>
+    <p class="cta-sub">Stop leaving money on the table. Partner with CarePoint for transparent, efficient, and high-yield medical billing solutions tailored to your practice.</p>
+    <a href="/carepoint_contact_us_refined/code.html" class="btn-primary" style="font-size:18px; padding:20px 40px;">
       Schedule Free Consultation
-      <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span>
+      <span class="material-symbols-outlined" style="font-size:24px">arrow_forward</span>
     </a>
   </div>
 </section>
@@ -803,7 +708,7 @@
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand gradient-text">CarePoint Medical Billing</div>
+        <div class="footer-brand">CarePoint Medical</div>
         <p class="footer-tagline">Empowering healthcare practices with transparent, efficient, and compliant revenue cycle management.</p>
       </div>
       <div>
@@ -818,63 +723,65 @@
         <div class="footer-col-title">Services</div>
         <ul class="footer-links">
           <li><a href="/carepoint_our_services_refined/code.html">Revenue Cycle</a></li>
-          <li><a href="/carepoint_our_services_refined/code.html">Coding & Audit</a></li>
-          <li><a href="/carepoint_our_services_refined/code.html">Denial Management</a></li>
+          <li><a href="/carepoint_our_services_refined/code.html">Medical Billing</a></li>
           <li><a href="/carepoint_specialties_refined/code.html">Specialties</a></li>
         </ul>
       </div>
       <div>
-        <div class="footer-col-title">Resources</div>
+        <div class="footer-col-title">Legal</div>
         <ul class="footer-links">
-          <li><a href="/carepoint_technology_refined/code.html">Technology</a></li>
-          <li><a href="/carepoint_contact_us_refined/code.html">Support</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">HIPAA Compliance</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2024 CarePoint Medical Billing LLC. All rights reserved.</span>
-      <div style="display:flex; gap:24px;">
-        <a href="#" style="color: var(--text-muted); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#F8FAFC'" onmouseout="this.style.color=''">Privacy Policy</a>
-        <a href="#" style="color: var(--text-muted); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#F8FAFC'" onmouseout="this.style.color=''">Terms of Service</a>
-      </div>
+      <div>&copy; 2026 CarePoint Medical Billing. All rights reserved.</div>
     </div>
   </div>
 </footer>
 
+<!-- ── Scripts ──────────────────────────────────────────────── -->
 <script>
-  // ── Navbar scroll ──────────────────────────────────────────
-  const navbar = document.getElementById('navbar');
+  // Navbar scroll effect
   window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 30);
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
   });
 
-  // ── Scroll reveal ──────────────────────────────────────────
-  const reveals = document.querySelectorAll('.reveal');
+  // Reveal animations
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        
+        // Trigger counter animation if it's the stats section
+        if (entry.target.classList.contains('stats-section')) {
+          const counters = document.querySelectorAll('.counter');
+          counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const duration = 2000;
+            const inc = target / (duration / 16);
+            let count = 0;
+            
+            const updateCount = () => {
+              count += inc;
+              if (count < target) {
+                counter.innerText = Math.ceil(count);
+                requestAnimationFrame(updateCount);
+              } else {
+                counter.innerText = target;
+              }
+            };
+            updateCount();
+          });
+        }
+      }
     });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => observer.observe(el));
+  }, { threshold: 0.1 });
 
-  // ── Counter animation ──────────────────────────────────────
-  function animateCounter(el) {
-    const target = parseInt(el.getAttribute('data-target'));
-    const duration = 1800;
-    const step = target / (duration / 16);
-    let current = 0;
-    const timer = setInterval(() => {
-      current += step;
-      if (current >= target) { current = target; clearInterval(timer); }
-      el.textContent = Math.floor(current);
-    }, 16);
-  }
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { animateCounter(e.target); counterObserver.unobserve(e.target); }
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+
 </body>
 </html>
