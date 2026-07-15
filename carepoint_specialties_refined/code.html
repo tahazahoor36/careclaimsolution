@@ -249,6 +249,20 @@
     .workflow-icon-wrap { width: 64px; height: 64px; font-size: 28px; }
     .spec-grid, .feat-grid, .stats-grid, .footer-inner { grid-template-columns: 1fr; }
   }
+
+  .mobile-menu-btn { display: none; background: none; border: none; color: var(--primary); font-size: 32px; cursor: pointer; }
+  @media (max-width: 768px) {
+    .mobile-menu-btn { display: block; }
+    nav#navbar .nav-links {
+      position: absolute; top: 80px; left: 0; right: 0; background: #FFFFFF;
+      flex-direction: column; padding: 24px; box-shadow: 0 16px 32px rgba(0,0,0,0.1);
+      border-top: 1px solid var(--border);
+      display: none;
+    }
+    nav#navbar .nav-links.active { display: flex !important; }
+    nav#navbar .nav-links a { width: 100%; text-align: center; padding: 16px; font-size: 18px; }
+  }
+
 </style>
 </head>
 <body>
@@ -535,5 +549,20 @@
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    if (mobileBtn && navLinks) {
+      mobileBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const icon = mobileBtn.querySelector('.material-symbols-outlined');
+        icon.textContent = navLinks.classList.contains('active') ? 'close' : 'menu';
+      });
+    }
+  });
+</script>
+
 </body>
 </html>
