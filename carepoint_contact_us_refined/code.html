@@ -7,223 +7,589 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@600;700;800;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <style>
-  :root { --bg-base: #030712; --bg-card: rgba(255,255,255,0.03); --bg-card-hover: rgba(255,255,255,0.06); --border: rgba(255,255,255,0.08); --text-primary: #F8FAFC; --text-secondary: #94A3B8; --text-muted: #475569; }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg-base); color: var(--text-primary); font-family: 'Inter', sans-serif; overflow-x: hidden; }
-  
-  .orb-container { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-  .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.15; animation: orb-drift 18s ease-in-out infinite; }
-  .orb-1 { width: 600px; height: 600px; background: #2563EB; top: -200px; left: -200px; animation-delay: 0s; }
-  .orb-2 { width: 500px; height: 500px; background: #06B6D4; bottom: -150px; right: -150px; animation-delay: -6s; }
-  .grid-overlay { position: fixed; inset: 0; z-index: 0; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size: 60px 60px; }
-  @keyframes orb-drift { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(40px, -30px) scale(1.05); } 66% { transform: translate(-30px, 40px) scale(0.95); } }
+  :root {
+    --bg-base: #FFFFFF;
+    --bg-light: #F7FBFF;
+    --bg-card: #FFFFFF;
+    --border: rgba(0,0,0,0.06);
+    --border-hover: rgba(15, 108, 189, 0.2);
+    --text-primary: #1E293B;
+    --text-secondary: #475569;
+    --text-muted: #64748B;
+    --primary: #0F6CBD;
+    --secondary: #3AA6FF;
+    --accent: #EAF6FF;
+    --glow: rgba(15, 108, 189, 0.15);
+  }
 
-  .gradient-text { background: linear-gradient(135deg, #60A5FA, #06B6D4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .glass-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; backdrop-filter: blur(12px); padding: 48px; transition: all 0.4s; }
-  
-  nav#navbar { position: fixed; top: 0; width: 100%; z-index: 100; padding: 0 48px; transition: all 0.4s; }
-  nav#navbar.scrolled { background: rgba(3,7,18,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
-  .nav-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 80px; }
-  .nav-logo { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 20px; background: linear-gradient(135deg, #60A5FA, #06B6D4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .nav-links { display: flex; gap: 8px; align-items: center; }
-  .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; padding: 8px 14px; border-radius: 8px; transition: all 0.25s; }
-  .nav-links a:hover, .nav-links a.active { color: var(--text-primary); background: rgba(255,255,255,0.06); }
-  
-  main { position: relative; z-index: 1; padding: 160px 48px 80px; max-width: 1280px; margin: 0 auto; min-height: 100vh; }
-  .page-title { font-family: 'Manrope', sans-serif; font-size: clamp(40px, 5vw, 56px); font-weight: 900; line-height: 1.1; margin-bottom: 24px; text-align: center; }
-  .page-sub { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto 64px; text-align: center; line-height: 1.7; }
-  
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
-  
-  /* Form */
-  input, select, textarea {
-    width: 100%;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px 16px;
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg-base);
     color: var(--text-primary);
     font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    margin-top: 8px;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Typography ───────────────────────────────────────────── */
+  .gradient-text {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  h1, h2, h3 { font-family: 'Manrope', sans-serif; letter-spacing: -0.02em; }
+  p { line-height: 1.8; font-size: 18px; color: var(--text-secondary); }
+
+  /* ── Navigation ───────────────────────────────────────────── */
+  nav#navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 0 48px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  nav#navbar.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.04); }
+  .nav-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 80px; }
+  .nav-logo { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 20px; color: var(--primary); letter-spacing: -0.02em; }
+  .nav-links { display: flex; align-items: center; gap: 8px; }
+  .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 600; padding: 8px 14px; border-radius: 8px; transition: all 0.25s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--primary); background: var(--accent); }
+  .nav-cta { background: linear-gradient(135deg, var(--primary), var(--secondary)) !important; color: white !important; border-radius: 10px; padding: 10px 24px !important; box-shadow: 0 4px 12px var(--glow); transition: all 0.3s !important; }
+  .nav-cta:hover { transform: scale(1.02) !important; box-shadow: 0 8px 20px rgba(15, 108, 189, 0.3) !important; }
+
+  /* ── Buttons ──────────────────────────────────────────────── */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 16px 36px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 24px var(--glow);
+  }
+  .btn-primary:hover { transform: scale(1.02) translateY(-2px); box-shadow: 0 12px 32px rgba(15, 108, 189, 0.3); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--primary);
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    border: 2px solid var(--primary);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-secondary:hover { background: var(--accent); transform: scale(1.02) translateY(-2px); }
+
+  /* ── Sections & Spacing ───────────────────────────────────── */
+  section { padding: 110px 48px; position: relative; z-index: 1; }
+  .section-inner { max-width: 1280px; margin: 0 auto; }
+  .section-title { font-size: clamp(38px, 4vw, 40px); font-weight: 900; margin-bottom: 24px; color: var(--text-primary); line-height: 1.2; }
+  .section-sub { max-width: 700px; margin: 0 auto 64px; text-align: center; }
+
+  /* ── Badge ────────────────────────────────────────────────── */
+  .badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: var(--primary); padding: 8px 16px; border-radius: 999px; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 24px; }
+
+  /* ── Hero ─────────────────────────────────────────────────── */
+  .hero-section {
+    padding: 220px 48px 140px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.12;
+    background: url('https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg?auto=compress&cs=tinysrgb&w=2000') center/cover;
+  }
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.8), var(--bg-base));
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
+  .hero-title { font-size: clamp(56px, 6vw, 60px); font-weight: 900; line-height: 1.15; margin-bottom: 32px; color: var(--text-primary); }
+
+  /* ── Contact Layout ───────────────────────────────────────── */
+  .contact-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 64px; margin-top: -40px; }
+  
+  /* ── Info Cards ───────────────────────────────────────────── */
+  .info-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  .info-card {
+    background: var(--bg-light);
+    border-radius: 20px;
+    padding: 32px;
+    border: 1px solid transparent;
+    transition: all 0.3s;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .info-card:hover {
+    background: #FFFFFF;
+    border-color: var(--border-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(15, 108, 189, 0.08);
+  }
+  .info-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: var(--accent);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    flex-shrink: 0;
+  }
+  .info-content h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; color: var(--text-primary); }
+  .info-content p { font-size: 16px; margin: 0; line-height: 1.6; }
+
+  /* ── Contact Form ─────────────────────────────────────────── */
+  .form-card {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 48px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+  }
+  .form-card h2 { font-size: 32px; font-weight: 800; margin-bottom: 12px; }
+  .form-card p { font-size: 16px; margin-bottom: 40px; }
+  
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+  .form-group label { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+  
+  input, select, textarea {
+    width: 100%;
+    background: var(--bg-light);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: var(--text-primary);
     transition: all 0.3s;
     outline: none;
   }
   input::placeholder, textarea::placeholder { color: var(--text-muted); }
   input:focus, select:focus, textarea:focus {
-    border-color: rgba(96,165,250,0.5);
-    background: rgba(255,255,255,0.06);
-    box-shadow: 0 0 0 2px rgba(37,99,235,0.25);
+    background: #FFFFFF;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--glow);
   }
-  label { font-size: 14px; font-weight: 500; color: var(--text-secondary); }
-  .form-group { margin-bottom: 24px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  select option { background: #0F172A; color: white; }
   
-  .btn-submit {
-    width: 100%;
-    background: linear-gradient(135deg, #2563EB, #0EA5E9);
-    color: white;
-    padding: 16px;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
+  /* ── Trust Section ────────────────────────────────────────── */
+  .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
+  .trust-card {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 32px;
+    border: 1px solid var(--border);
     transition: all 0.3s;
-    box-shadow: 0 0 24px rgba(37,99,235,0.4);
-    margin-top: 12px;
+    text-align: center;
   }
-  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(37,99,235,0.5); }
+  .trust-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(15, 108, 189, 0.08); border-color: var(--border-hover); }
+  .trust-icon { font-size: 40px; color: var(--primary); margin-bottom: 20px; }
+  .trust-title { font-size: 20px; font-weight: 800; margin-bottom: 12px; }
 
-  /* Info */
-  .info-item { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 32px; }
-  .icon-wrap { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(37,99,235,0.15); color: #60A5FA; flex-shrink: 0; }
-  
-  footer { background: rgba(0,0,0,0.4); border-top: 1px solid var(--border); padding: 64px 48px 40px; position: relative; z-index: 1; }
-  .footer-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
-  .footer-brand { font-family: 'Manrope', sans-serif; font-size: 18px; font-weight: 800; background: linear-gradient(135deg, #60A5FA, #06B6D4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-  .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; display: block; margin-top: 12px; transition: 0.2s; }
-  .footer-links a:hover { color: var(--text-primary); }
+  /* ── FAQ Accordion ────────────────────────────────────────── */
+  .faq-container { max-width: 800px; margin: 0 auto; }
+  .faq-item {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .faq-item:hover { border-color: var(--border-hover); }
+  .faq-question {
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--text-primary);
+  }
+  .faq-question span.material-symbols-outlined { transition: transform 0.3s; color: var(--primary); }
+  .faq-answer {
+    padding: 0 32px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+  }
+  .faq-answer p { font-size: 16px; margin-bottom: 24px; }
+  .faq-item.active .faq-answer { max-height: 300px; padding-bottom: 24px; }
+  .faq-item.active .faq-question span.material-symbols-outlined { transform: rotate(180deg); }
 
-  .reveal { opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
-  @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+  /* ── Consultation Banner ──────────────────────────────────── */
+  .cta-banner {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 24px;
+    padding: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #FFFFFF;
+    box-shadow: 0 24px 64px rgba(15, 108, 189, 0.3);
+  }
+  .cta-banner h2 { font-size: 40px; font-weight: 900; margin-bottom: 16px; color: #FFFFFF; }
+  .cta-banner p { font-size: 18px; color: var(--accent); max-width: 500px; margin-bottom: 0; }
+  .cta-banner .btn-primary { background: #FFFFFF; color: var(--primary); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .cta-banner .btn-primary:hover { transform: scale(1.05); box-shadow: 0 12px 32px rgba(0,0,0,0.2); }
 
+  /* ── Footer ───────────────────────────────────────────────── */
+  footer { background: #FFFFFF; border-top: 1px solid var(--border); padding: 80px 48px 40px; }
+  .footer-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 64px; }
+  .footer-brand { font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 900; color: var(--primary); }
+  .footer-tagline { font-size: 15px; color: var(--text-secondary); margin-top: 16px; line-height: 1.8; }
+  .footer-col-title { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-primary); margin-bottom: 24px; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+  .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--primary); }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 32px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: var(--text-muted); }
+
+  /* ── Animations ───────────────────────────────────────────── */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .delay-1 { transition-delay: 0.15s; } .delay-2 { transition-delay: 0.3s; }
+
+  @media (max-width: 1024px) {
+    .contact-layout { grid-template-columns: 1fr; }
+    .form-card { order: -1; } /* Bring form to top on tablet/mobile */
+    .trust-grid { grid-template-columns: repeat(2, 1fr); }
+    .cta-banner { flex-direction: column; text-align: center; gap: 32px; }
+    .cta-banner p { margin: 0 auto; }
+  }
   @media (max-width: 768px) {
-    nav#navbar { padding: 0 20px; } .nav-links { display: none; }
-    main { padding: 120px 20px 60px; }
-    .grid-2 { grid-template-columns: 1fr; gap: 48px;}
+    nav#navbar { padding: 0 24px; } .nav-links { display: none; }
+    section { padding: 80px 24px; }
+    .hero-section { padding: 140px 24px 80px; }
+    .form-card { padding: 32px; }
     .form-row { grid-template-columns: 1fr; gap: 0; }
-    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .info-card { flex-direction: column; align-items: center; text-align: center; }
+    .trust-grid, .footer-inner { grid-template-columns: 1fr; }
+    .cta-banner { padding: 40px 24px; }
   }
 </style>
 </head>
 <body>
 
-<div class="orb-container"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
-<div class="grid-overlay"></div>
-
 <nav id="navbar">
   <div class="nav-inner">
-    <div class="nav-logo">CarePoint Medical Billing</div>
+    <div class="nav-logo">CarePoint Medical</div>
     <div class="nav-links">
       <a href="/carepoint_home_refined/code.html">Home</a>
       <a href="/carepoint_about_us_refined/code.html">About</a>
       <a href="/carepoint_our_services_refined/code.html">Services</a>
       <a href="/carepoint_technology_refined/code.html">Technology</a>
       <a href="/carepoint_specialties_refined/code.html">Specialties</a>
-      <a href="/carepoint_why_choose_us_refined/code.html">Compliance</a>
-      <a href="/carepoint_contact_us_refined/code.html" class="active" style="background: linear-gradient(135deg, #2563EB, #0EA5E9); color: white;">Schedule Consultation</a>
+      <a href="/carepoint_contact_us_refined/code.html" class="active">Contact</a>
+      <a href="/carepoint_contact_us_refined/code.html" class="nav-cta">Schedule Consultation</a>
     </div>
   </div>
 </nav>
 
 <main>
-  <div class="reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 48px; align-items: center; margin-bottom: 80px;">
-    <div>
-      <div class="badge" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(37,99,235,0.12); border: 1px solid rgba(37,99,235,0.25); color: #60A5FA; padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 24px;">Contact Us</div>
-      <h1 class="page-title" style="text-align: left;">
-        Let's optimize your <br/>
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-bg-img"></div>
+    <div class="hero-gradient"></div>
+    <div class="hero-content reveal">
+      <div class="badge">Get In Touch</div>
+      <h1 class="hero-title">
+        Let's Optimize Your <br/>
         <span class="gradient-text">Revenue Cycle</span>
       </h1>
-      <p class="page-sub" style="text-align: left; margin: 0;">
-        Ready to maximize your reimbursements? Our experts are here to help you navigate the complexities of medical billing with precision.
+      <p class="section-sub" style="font-size: 20px;">
+        We are a trusted Healthcare Revenue Cycle Management partner ready to help your medical practice eliminate denials and increase revenue.
       </p>
+      <div style="display: flex; gap: 16px; justify-content: center; align-items: center;">
+        <a href="#contact-form" class="btn-primary">Book Free Consultation</a>
+        <a href="tel:1800555CARE" class="btn-secondary">Call Us Today</a>
+      </div>
     </div>
-    <div class="reveal delay-1" style="border-radius: 24px; overflow: hidden; position: relative; border: 1px solid var(--border); box-shadow: 0 20px 60px rgba(0,0,0,0.6);">
-      <img src="https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Hospital reception and contact" style="width: 100%; height: 400px; object-fit: cover; display: block; filter: brightness(0.85);" />
-      <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(3,7,18,0.4) 0%, transparent 100%);"></div>
-    </div>
-  </div>
+  </section>
 
-  <div class="grid-2">
-    <!-- Form Side -->
-    <div class="glass-card reveal">
-      <h2 style="font-family: 'Manrope', sans-serif; font-size: 24px; font-weight: 700; margin-bottom: 32px;">Send us a message</h2>
-      <form>
-        <div class="form-row">
-          <div class="form-group"><label>First Name</label><input type="text" placeholder="Jane"/></div>
-          <div class="form-group"><label>Last Name</label><input type="text" placeholder="Doe"/></div>
-        </div>
-        <div class="form-group"><label>Email Address</label><input type="email" placeholder="jane@example.com"/></div>
-        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="(555) 123-4567"/></div>
-        <div class="form-group"><label>Medical Specialty</label>
-          <select>
-            <option value="" disabled selected>Select your specialty</option>
-            <option>General Practice</option>
-            <option>Cardiology</option>
-            <option>Orthopedics</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-group"><label>How can we help?</label><textarea rows="4" placeholder="Tell us about your billing needs..."></textarea></div>
-        <button type="button" class="btn-submit">Submit Request</button>
-      </form>
-    </div>
-    
-    <!-- Info Side -->
-    <div class="reveal" style="animation-delay: 0.15s; padding-top: 24px;">
-      <h2 style="font-family: 'Manrope', sans-serif; font-size: 24px; font-weight: 700; margin-bottom: 12px;">Contact Information</h2>
-      <p style="color: var(--text-secondary); font-size: 16px; margin-bottom: 40px; line-height: 1.7;">Reach out directly or visit our headquarters. We are committed to prompt, professional service and complete transparency.</p>
+  <!-- CONTACT LAYOUT SECTION -->
+  <section id="contact-form" style="padding-top: 0;">
+    <div class="section-inner contact-layout">
       
-      <div class="info-item">
-        <div class="icon-wrap"><span class="material-symbols-outlined">location_on</span></div>
-        <div>
-          <div style="font-weight: 600; font-size: 16px; margin-bottom: 4px;">Headquarters</div>
-          <div style="color: var(--text-secondary); font-size: 15px; line-height: 1.6;">12 Cherry St<br/>Valley Stream, NY 11581</div>
+      <!-- Left: Contact Info -->
+      <div class="info-grid reveal">
+        
+        <div class="info-card">
+          <div class="info-icon"><span class="material-symbols-outlined">call</span></div>
+          <div class="info-content">
+            <h3>Phone</h3>
+            <p>1-800-555-CARE</p>
+            <p style="color: var(--text-muted); font-size: 14px; margin-top: 4px;">Mon-Fri, 9am - 6pm EST</p>
+          </div>
         </div>
+
+        <div class="info-card">
+          <div class="info-icon"><span class="material-symbols-outlined">mail</span></div>
+          <div class="info-content">
+            <h3>Email</h3>
+            <p>support@carepointbilling.com</p>
+            <p style="color: var(--text-muted); font-size: 14px; margin-top: 4px;">Response within 2 hours</p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon"><span class="material-symbols-outlined">location_on</span></div>
+          <div class="info-content">
+            <h3>Headquarters</h3>
+            <p>12 Cherry St<br/>Valley Stream, NY 11581</p>
+          </div>
+        </div>
+
       </div>
 
-      <div class="info-item">
-        <div class="icon-wrap"><span class="material-symbols-outlined">call</span></div>
-        <div>
-          <div style="font-weight: 600; font-size: 16px; margin-bottom: 4px;">Phone</div>
-          <div style="color: var(--text-secondary); font-size: 15px; line-height: 1.6;">1-800-555-CARE</div>
-        </div>
+      <!-- Right: Contact Form -->
+      <div class="form-card reveal delay-1">
+        <h2>Schedule a Consultation</h2>
+        <p>Fill out the form below and one of our healthcare billing specialists will contact you shortly.</p>
+        
+        <form>
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="Jane" required />
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Doe" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="jane@example.com" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" placeholder="(555) 123-4567" required />
+            </div>
+            <div class="form-group">
+              <label>Medical Specialty</label>
+              <select required>
+                <option value="" disabled selected>Select your specialty</option>
+                <option>Primary Care</option>
+                <option>Cardiology</option>
+                <option>Orthopedics</option>
+                <option>Dermatology</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>How can we help optimize your revenue?</label>
+            <textarea rows="4" placeholder="Tell us about your current billing challenges..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%;">Submit Request</button>
+        </form>
       </div>
 
-      <div class="info-item">
-        <div class="icon-wrap"><span class="material-symbols-outlined">mail</span></div>
-        <div>
-          <div style="font-weight: 600; font-size: 16px; margin-bottom: 4px;">Email</div>
-          <div style="color: var(--text-secondary); font-size: 15px; line-height: 1.6;">support@carepointbilling.com</div>
-        </div>
-      </div>
+    </div>
+  </section>
 
-      <div class="info-item">
-        <div class="icon-wrap"><span class="material-symbols-outlined">schedule</span></div>
-        <div>
-          <div style="font-weight: 600; font-size: 16px; margin-bottom: 4px;">Business Hours</div>
-          <div style="color: var(--text-secondary); font-size: 15px; line-height: 1.6;">Mon - Fri: 9:00 AM - 6:00 PM EST<br/>Sat - Sun: Closed</div>
+  <!-- TRUST SECTION -->
+  <section style="background: var(--bg-light); border-top: 1px solid var(--border);">
+    <div class="section-inner">
+      <div style="text-align: center; margin-bottom: 64px;" class="reveal">
+        <h2 class="section-title">Why Contact CarePoint?</h2>
+        <p class="section-sub">We partner with practices nationwide to eliminate administrative burdens.</p>
+      </div>
+      
+      <div class="trust-grid">
+        <div class="trust-card reveal">
+          <div class="trust-icon"><span class="material-symbols-outlined">verified</span></div>
+          <h3 class="trust-title">Certified Experts</h3>
+          <p>Our team consists of AAPC/AHIMA certified coders and billing specialists.</p>
+        </div>
+        <div class="trust-card reveal delay-1">
+          <div class="trust-icon"><span class="material-symbols-outlined">shield_person</span></div>
+          <h3 class="trust-title">HIPAA Compliant</h3>
+          <p>Enterprise-grade security protocols to protect your sensitive PHI.</p>
+        </div>
+        <div class="trust-card reveal delay-2">
+          <div class="trust-icon"><span class="material-symbols-outlined">trending_up</span></div>
+          <h3 class="trust-title">Revenue Optimization</h3>
+          <p>We consistently increase practice revenue by an average of 20%.</p>
+        </div>
+        <div class="trust-card reveal">
+          <div class="trust-icon"><span class="material-symbols-outlined">speed</span></div>
+          <h3 class="trust-title">Fast Response</h3>
+          <p>Dedicated account managers ensure rapid resolutions to your questions.</p>
+        </div>
+        <div class="trust-card reveal delay-1">
+          <div class="trust-icon"><span class="material-symbols-outlined">diversity_3</span></div>
+          <h3 class="trust-title">Personalized Support</h3>
+          <p>We don't use call centers. You get a direct line to your billing team.</p>
+        </div>
+        <div class="trust-card reveal delay-2">
+          <div class="trust-icon"><span class="material-symbols-outlined">local_hospital</span></div>
+          <h3 class="trust-title">Multi-Specialty</h3>
+          <p>Deep expertise spanning across dozens of distinct medical specialties.</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section>
+    <div class="section-inner">
+      <div style="text-align: center; margin-bottom: 64px;" class="reveal">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-sub">Answers to common questions before scheduling your consultation.</p>
+      </div>
+
+      <div class="faq-container reveal">
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            What happens during the free consultation?
+            <span class="material-symbols-outlined">expand_more</span>
+          </div>
+          <div class="faq-answer">
+            <p>During our 30-minute consultation, a senior revenue cycle expert will review your current billing workflows, identify potential areas of revenue leakage, and explain exactly how our services can integrate with your practice to improve cash flow.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Do I have to change my current EHR?
+            <span class="material-symbols-outlined">expand_more</span>
+          </div>
+          <div class="faq-answer">
+            <p>No. We are software-agnostic and will seamlessly integrate our billing teams directly into your existing Electronic Health Record (EHR) system, whether you use Epic, Cerner, Athenahealth, AdvancedMD, or any other major platform.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            How quickly can you onboard my practice?
+            <span class="material-symbols-outlined">expand_more</span>
+          </div>
+          <div class="faq-answer">
+            <p>Our typical onboarding process takes between 14 to 30 days depending on the size of your practice and the complexity of your current credentialing status. We handle the entire transition to ensure zero disruption to your cash flow.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section style="padding-top: 0;">
+    <div class="section-inner reveal">
+      <div class="cta-banner">
+        <div>
+          <h2>Ready to transform your practice?</h2>
+          <p>Take the first step toward lower denial rates, faster reimbursements, and complete financial peace of mind.</p>
+        </div>
+        <a href="#contact-form" class="btn-primary" style="background: #FFFFFF; color: var(--primary);">Schedule Assessment</a>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer>
   <div class="footer-inner">
     <div>
-      <div class="footer-brand">CarePoint Medical Billing</div>
-      <p style="font-size: 14px; color: var(--text-muted); margin-top: 12px; line-height: 1.7;">Empowering healthcare practices with transparent, efficient, and compliant revenue cycle management.</p>
+      <div class="footer-brand">CarePoint Medical</div>
+      <p class="footer-tagline">Empowering healthcare practices with transparent, efficient, and compliant revenue cycle management.</p>
     </div>
-    <div class="footer-links">
-      <div style="font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Quick Links</div>
-      <a href="/carepoint_about_us_refined/code.html">About Us</a>
-      <a href="/carepoint_contact_us_refined/code.html">Contact</a>
-      <a href="/carepoint_why_choose_us_refined/code.html">Why Choose Us</a>
+    <div>
+      <div class="footer-col-title">Quick Links</div>
+      <ul class="footer-links">
+        <li><a href="/carepoint_about_us_refined/code.html">About Us</a></li>
+        <li><a href="/carepoint_contact_us_refined/code.html">Contact</a></li>
+        <li><a href="/carepoint_why_choose_us_refined/code.html">Why Choose Us</a></li>
+      </ul>
     </div>
-    <div class="footer-links">
-      <div style="font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Services</div>
-      <a href="/carepoint_our_services_refined/code.html">Revenue Cycle</a>
-      <a href="/carepoint_our_services_refined/code.html">Coding & Audit</a>
-      <a href="/carepoint_specialties_refined/code.html">Specialties</a>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="/carepoint_our_services_refined/code.html">Revenue Cycle</a></li>
+        <li><a href="/carepoint_our_services_refined/code.html">Medical Billing</a></li>
+        <li><a href="/carepoint_specialties_refined/code.html">Specialties</a></li>
+      </ul>
     </div>
+    <div>
+      <div class="footer-col-title">Legal</div>
+      <ul class="footer-links">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">HIPAA Compliance</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>&copy; 2026 CarePoint Medical Billing. All rights reserved.</div>
   </div>
 </footer>
 
 <script>
   window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30); });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // FAQ Accordion
+  document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+      const parent = question.parentElement;
+      const isActive = parent.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+      if (!isActive) {
+        parent.classList.add('active');
+      }
+    });
+  });
 </script>
 </body>
 </html>
