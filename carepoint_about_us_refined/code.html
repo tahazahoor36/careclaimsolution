@@ -1,179 +1,147 @@
-<!DOCTYPE html><html class="scroll-smooth" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&amp;family=Inter:wght@400..700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Manrope:wght@100..900&amp;display=swap" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "surface-container-lowest": "#ffffff",
-                        "surface-tint": "#2d6197",
-                        "on-tertiary-container": "#52d17e",
-                        "on-primary-fixed-variant": "#07497d",
-                        "surface-dim": "#cfdaf2",
-                        "on-tertiary-fixed": "#00210c",
-                        "accent-sky": "#00BFFF",
-                        "primary-fixed": "#d2e4ff",
-                        "on-secondary-container": "#002959",
-                        "surface-main": "#F8FAFC",
-                        "primary-container": "#0f4c81",
-                        "primary": "#00355f",
-                        "on-primary-container": "#8ebdf9",
-                        "on-error": "#ffffff",
-                        "outline-variant": "#c2c7d1",
-                        "inverse-surface": "#263143",
-                        "on-secondary-fixed": "#001b3f",
-                        "inverse-primary": "#a0c9ff",
-                        "outline": "#727780",
-                        "on-background": "#111c2d",
-                        "on-primary": "#ffffff",
-                        "on-primary-fixed": "#001c37",
-                        "tertiary": "#003c1b",
-                        "surface-container": "#e7eeff",
-                        "surface-deep": "#071D36",
-                        "on-tertiary": "#ffffff",
-                        "on-surface": "#111c2d",
-                        "on-secondary": "#ffffff",
-                        "surface-variant": "#d8e3fb",
-                        "background": "#f9f9ff",
-                        "surface-container-low": "#f0f3ff",
-                        "inverse-on-surface": "#ecf1ff",
-                        "error": "#ba1a1a",
-                        "secondary-fixed": "#d7e3ff",
-                        "secondary-container": "#448ffd",
-                        "success-muted": "#ECFDF5",
-                        "tertiary-fixed": "#7efba4",
-                        "on-surface-variant": "#42474f",
-                        "on-tertiary-fixed-variant": "#005228",
-                        "tertiary-fixed-dim": "#61de8a",
-                        "primary-fixed-dim": "#a0c9ff",
-                        "error-container": "#ffdad6",
-                        "on-error-container": "#93000a",
-                        "tertiary-container": "#00562a",
-                        "surface": "#f9f9ff",
-                        "surface-container-high": "#dee8ff",
-                        "secondary": "#005cba",
-                        "secondary-fixed-dim": "#abc7ff",
-                        "on-secondary-fixed-variant": "#00458e",
-                        "surface-container-highest": "#d8e3fb",
-                        "surface-bright": "#f9f9ff"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "gutter": "24px",
-                        "margin-desktop": "48px",
-                        "base": "8px",
-                        "container-max": "1280px",
-                        "section-gap": "160px",
-                        "margin-mobile": "16px"
-                    },
-                    "fontFamily": {
-                        "display-lg": ["Manrope"],
-                        "headline-sm": ["Manrope"],
-                        "headline-md": ["Manrope"],
-                        "body-sm": ["Inter"],
-                        "label-caps": ["Inter"],
-                        "body-lg": ["Inter"],
-                        "display-lg-mobile": ["Manrope"],
-                        "body-md": ["Inter"]
-                    },
-                    "fontSize": {
-                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
-                        "headline-md": ["30px", { "lineHeight": "1.3", "fontWeight": "600" }],
-                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
-                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
-                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
-                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
-                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }]
-                    }
-                }
-            }
-        }
-    }catch(_e){}</script></head><body class="bg-surface-main text-on-surface font-body-md antialiased selection:bg-secondary-container selection:text-on-secondary-container">
-<!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-md shadow-sm transition-all duration-300 ease-in-out">
-<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
-<div class="font-headline-sm text-headline-sm font-bold text-primary">
-                CarePoint Medical Billing
-            </div>
-<div class="hidden md:flex gap-gutter items-center font-body-md text-body-md">
-<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200" href="/carepoint_home_refined/code.html">Home</a>
-<a class="text-secondary border-b-2 border-secondary pb-1 transition-colors duration-200" href="/carepoint_about_us_refined/code.html">About</a>
-<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200" href="/carepoint_our_services_refined/code.html">Services</a>
-<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200" href="/carepoint_technology_refined/code.html">Technology</a>
-<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200" href="/carepoint_specialties_refined/code.html">Specialties</a>
-<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200" href="/carepoint_contact_us_refined/code.html">Contact</a>
-</div>
-<a href="/carepoint_contact_us_refined/code.html" class="bg-primary text-on-primary font-body-sm text-body-sm px-4 py-2 rounded-lg hover:bg-primary/90 transition-all duration-200 shadow-sm hidden md:block">
-                Schedule Consultation
-            </a>
-<button class="md:hidden text-primary">
-<span class="material-symbols-outlined" data-icon="menu">menu</span>
-</button>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About Us - CarePoint Medical Billing</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg-base: #030712;
+    --bg-card: rgba(255,255,255,0.03);
+    --bg-card-hover: rgba(255,255,255,0.06);
+    --border: rgba(255,255,255,0.08);
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --text-muted: #475569;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg-base); color: var(--text-primary); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+  
+  /* Background */
+  .orb-container { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.15; animation: orb-drift 18s ease-in-out infinite; }
+  .orb-1 { width: 600px; height: 600px; background: #2563EB; top: -200px; left: -200px; animation-delay: 0s; }
+  .orb-2 { width: 500px; height: 500px; background: #06B6D4; bottom: -150px; right: -150px; animation-delay: -6s; }
+  .grid-overlay { position: fixed; inset: 0; z-index: 0; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size: 60px 60px; }
+  @keyframes orb-drift { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(40px, -30px) scale(1.05); } 66% { transform: translate(-30px, 40px) scale(0.95); } }
+
+  /* Typography & Utilities */
+  .gradient-text { background: linear-gradient(135deg, #60A5FA, #06B6D4, #34D399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .glass-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; backdrop-filter: blur(12px); padding: 36px; transition: all 0.4s; }
+  .glass-card:hover { background: var(--bg-card-hover); border-color: rgba(96,165,250,0.25); transform: translateY(-4px); }
+  .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(37,99,235,0.12); border: 1px solid rgba(37,99,235,0.25); color: #60A5FA; padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 24px;}
+  
+  /* Nav */
+  nav#navbar { position: fixed; top: 0; width: 100%; z-index: 100; padding: 0 48px; transition: all 0.4s; }
+  nav#navbar.scrolled { background: rgba(3,7,18,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+  .nav-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 80px; }
+  .nav-logo { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 20px; background: linear-gradient(135deg, #60A5FA, #06B6D4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .nav-links { display: flex; gap: 8px; align-items: center; }
+  .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; padding: 8px 14px; border-radius: 8px; transition: all 0.25s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--text-primary); background: rgba(255,255,255,0.06); }
+  .nav-cta { background: linear-gradient(135deg, #2563EB, #0EA5E9); color: white !important; font-weight: 600 !important; }
+  
+  /* Layout */
+  main { position: relative; z-index: 1; padding: 160px 48px 80px; max-width: 1280px; margin: 0 auto; min-height: 100vh; }
+  .page-title { font-family: 'Manrope', sans-serif; font-size: clamp(40px, 5vw, 56px); font-weight: 900; line-height: 1.1; margin-bottom: 24px; text-align: center; }
+  .page-sub { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto 64px; text-align: center; line-height: 1.7; }
+  
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .icon-wrap { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; background: rgba(37,99,235,0.15); color: #60A5FA; }
+  .card-title { font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+  .card-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
+
+  /* Footer */
+  footer { background: rgba(0,0,0,0.4); border-top: 1px solid var(--border); padding: 64px 48px 40px; position: relative; z-index: 1; }
+  .footer-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
+  .footer-brand { font-family: 'Manrope', sans-serif; font-size: 18px; font-weight: 800; background: linear-gradient(135deg, #60A5FA, #06B6D4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
+  .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; display: block; margin-top: 12px; transition: 0.2s; }
+  .footer-links a:hover { color: var(--text-primary); }
+
+  /* Animations */
+  .reveal { opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .delay-1 { animation-delay: 0.15s; } .delay-2 { animation-delay: 0.3s; }
+  @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 768px) {
+    nav#navbar { padding: 0 20px; } .nav-links { display: none; }
+    main { padding: 120px 20px 60px; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="orb-container"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+<div class="grid-overlay"></div>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo">CarePoint Medical Billing</div>
+    <div class="nav-links">
+      <a href="/carepoint_home_refined/code.html">Home</a>
+      <a href="/carepoint_about_us_refined/code.html" class="active">About</a>
+      <a href="/carepoint_our_services_refined/code.html">Services</a>
+      <a href="/carepoint_technology_refined/code.html">Technology</a>
+      <a href="/carepoint_specialties_refined/code.html">Specialties</a>
+      <a href="/carepoint_contact_us_refined/code.html">Contact</a>
+      <a href="/carepoint_contact_us_refined/code.html" class="nav-cta">Schedule Consultation</a>
+    </div>
+  </div>
 </nav>
-<main class="pt-[80px]">
-<!-- Hero Section -->
-<section class="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-<div class="absolute inset-0 z-0">
-<img alt="Professional, high-end architectural photography of a modern healthcare corporate headquarters with minimalist glass walls." class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApj2-Jd6DUhOFB3wc_8tXfGwWUwRlhKATwvZyopLs3-6dCgr2zj4YlMuAl2kfUWtkXmaY6A5q3zQJHxEs-OCPI2k9gZcv9uo5E7MYBhlx-qx5XFSWGsG3511yW_Ro2df0byMjD1DMUXaIYP0hlxsJ7dvEQT93j3Ri3HGlwTEVKzzsXia0-RwM9HAZvUrsKjoUCLAzXlH63_V5CGVA0Qy3HVN62i1r5xl5Vg_QbtBpLsCbP7SCpjcyqag">
-<div class="absolute inset-0 bg-surface-deep/70 backdrop-blur-[2px]"></div>
-</div>
-<div class="relative z-10 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center text-on-secondary reveal">
-<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg mb-6 max-w-4xl mx-auto drop-shadow-lg tracking-tight">
-                    Excellence in Revenue Cycle Management
-                </h1>
-<p class="font-body-lg text-body-lg max-w-2xl mx-auto text-surface-container-highest opacity-90 delay-100 reveal">
-                    Pioneering sophisticated financial solutions for the modern healthcare enterprise. We blend technological innovation with unwavering precision.
-                </p>
-</div>
-</section>
+
+<main>
+  <div style="text-align: center;" class="reveal">
+    <div class="badge">About CarePoint</div>
+    <h1 class="page-title">
+      Excellence in <br/>
+      <span class="gradient-text">Revenue Cycle Management</span>
+    </h1>
+    <p class="page-sub">
+      Pioneering sophisticated financial solutions for the modern healthcare enterprise. We blend technological innovation with unwavering precision.
+    </p>
+  </div>
+
+  <div class="grid-2">
+    <div class="glass-card reveal delay-1">
+      <div class="icon-wrap" style="background: rgba(6,182,212,0.15); color: #22D3EE;"><span class="material-symbols-outlined">visibility</span></div>
+      <div class="card-title">Our Vision</div>
+      <p class="card-desc">To be the undisputed leader in healthcare revenue cycle management, setting the standard for transparency, efficiency, and continuous financial growth for practices of all sizes.</p>
+    </div>
+    <div class="glass-card reveal delay-2">
+      <div class="icon-wrap"><span class="material-symbols-outlined">flag</span></div>
+      <div class="card-title">Our Mission</div>
+      <p class="card-desc">To empower healthcare providers by eliminating administrative friction, ensuring they are compensated fully and rapidly for the care they provide, allowing them to focus entirely on patients.</p>
+    </div>
+  </div>
 </main>
-<!-- Footer -->
-<footer class="bg-surface-deep text-on-secondary w-full">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-section-gap max-w-container-max mx-auto">
-<div>
-<div class="font-headline-sm text-headline-sm font-bold text-on-secondary mb-4">CarePoint Medical Billing</div>
-<p class="font-body-sm text-body-sm text-on-secondary-container">© 2024 CarePoint Medical Billing LLC. All rights reserved.</p>
-</div>
-<div class="flex flex-col gap-2 font-body-sm text-body-sm">
-<a class="text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">HIPAA Compliant</a>
-<a class="text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">Secure Infrastructure</a>
-<a class="text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">Certified Experts</a>
-</div>
-<div class="flex flex-col gap-2 font-body-sm text-body-sm">
-<a class="text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">Fast Claims</a>
-<a class="text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">24/7 Support</a>
-</div>
-<div class="flex flex-col gap-2 font-body-sm text-body-sm">
-<a class="text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">Privacy Policy</a>
-<a class="text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">Terms of Service</a>
-<a class="text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">Contact Support</a>
-</div>
-</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">CarePoint Medical Billing</div>
+      <p style="font-size: 14px; color: var(--text-muted); margin-top: 12px; line-height: 1.7;">Empowering healthcare practices with transparent, efficient, and compliant revenue cycle management.</p>
+    </div>
+    <div class="footer-links">
+      <div style="font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Quick Links</div>
+      <a href="/carepoint_about_us_refined/code.html">About Us</a>
+      <a href="/carepoint_contact_us_refined/code.html">Contact</a>
+      <a href="/carepoint_why_choose_us_refined/code.html">Why Choose Us</a>
+    </div>
+    <div class="footer-links">
+      <div style="font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Services</div>
+      <a href="/carepoint_our_services_refined/code.html">Revenue Cycle</a>
+      <a href="/carepoint_our_services_refined/code.html">Coding & Audit</a>
+      <a href="/carepoint_specialties_refined/code.html">Specialties</a>
+    </div>
+  </div>
 </footer>
-<script class="">
-        document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.reveal');
-            
-            const revealOnScroll = () => {
-                const windowHeight = window.innerHeight;
-                const elementVisible = 100;
-                
-                reveals.forEach(reveal => {
-                    const elementTop = reveal.getBoundingClientRect().top;
-                    if (elementTop < windowHeight - elementVisible) {
-                        reveal.classList.add('active');
-                    }
-                });
-            };
-            
-            window.addEventListener('scroll', revealOnScroll);
-            revealOnScroll(); // Trigger immediately for hero section
-        });
-    </script>
-</body></html>
+
+<script>
+  window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30); });
+</script>
+</body>
+</html>
