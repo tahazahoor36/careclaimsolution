@@ -665,27 +665,23 @@
       </div>
     </div>
 
-    <!-- Right — Metric Cards -->
-    <div class="metrics-grid hero-animate hero-animate-3">
-      <div class="metric-card shimmer-border">
+    <!-- Right — Image with Floating Metrics -->
+    <div class="hero-image-container hero-animate hero-animate-3" style="position: relative;">
+      <div style="border-radius: 24px; overflow: hidden; position: relative; border: 1px solid var(--border); box-shadow: 0 20px 60px rgba(0,0,0,0.6);">
+        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=800" alt="Healthcare Professional" style="width: 100%; height: 500px; object-fit: cover; display: block; filter: brightness(0.85);" />
+        <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(3,7,18,0.6) 0%, transparent 50%, rgba(37,99,235,0.2) 100%);"></div>
+      </div>
+      
+      <div class="metric-card shimmer-border" style="position: absolute; bottom: 30px; left: -30px; background: rgba(3,7,18,0.75); width: 220px;">
         <div class="metric-icon"><span class="material-symbols-outlined" style="color:#60A5FA">trending_up</span></div>
         <div class="metric-value">$500M+</div>
         <div class="metric-label">Claims Processed</div>
       </div>
-      <div class="metric-card">
+      
+      <div class="metric-card" style="position: absolute; top: 40px; right: -30px; background: rgba(3,7,18,0.75); width: 200px;">
         <div class="metric-icon"><span class="material-symbols-outlined" style="color:#34D399">task_alt</span></div>
         <div class="metric-value">99%</div>
         <div class="metric-label">First-Pass Approval</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-icon"><span class="material-symbols-outlined" style="color:#22D3EE">groups</span></div>
-        <div class="metric-value">500+</div>
-        <div class="metric-label">Healthcare Providers</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-icon"><span class="material-symbols-outlined" style="color:#A78BFA">workspace_premium</span></div>
-        <div class="metric-value">20+</div>
-        <div class="metric-label">Years Experience</div>
       </div>
     </div>
   </div>
@@ -770,9 +766,10 @@
 </section>
 
 <!-- ── CTA ───────────────────────────────────────────────────── -->
-<section class="cta-section reveal">
+<section class="cta-section reveal" style="background: url('https://images.unsplash.com/photo-1638202993928-7267aad84c31?auto=format&fit=crop&q=80&w=1600') center/cover fixed; position: relative;">
+  <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(3,7,18,1) 0%, rgba(3,7,18,0.8) 50%, rgba(3,7,18,1) 100%);"></div>
   <div class="cta-glow"></div>
-  <div style="position:relative; z-index:1;">
+  <div style="position:relative; z-index:1; padding: 40px; background: rgba(3,7,18,0.6); backdrop-filter: blur(12px); border-radius: 24px; border: 1px solid var(--border); max-width: 800px; margin: 0 auto;">
     <div class="badge" style="margin-bottom:24px;">Ready to Grow?</div>
     <h2 class="cta-title gradient-text-warm">Let's Optimize Your<br/>Revenue Cycle.</h2>
     <p class="cta-sub">Stop leaving money on the table. Partner with CarePoint for transparent, efficient, and high-yield medical billing solutions.</p>
