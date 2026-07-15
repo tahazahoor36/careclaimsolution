@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CarePoint Medical Billing - Services</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#2d6197",
+                        "on-tertiary-container": "#52d17e",
+                        "on-primary-fixed-variant": "#07497d",
+                        "surface-dim": "#cfdaf2",
+                        "on-tertiary-fixed": "#00210c",
+                        "accent-sky": "#00BFFF",
+                        "primary-fixed": "#d2e4ff",
+                        "on-secondary-container": "#002959",
+                        "surface-main": "#F8FAFC",
+                        "primary-container": "#0f4c81",
+                        "primary": "#00355f",
+                        "on-primary-container": "#8ebdf9",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#c2c7d1",
+                        "inverse-surface": "#263143",
+                        "on-secondary-fixed": "#001b3f",
+                        "inverse-primary": "#a0c9ff",
+                        "outline": "#727780",
+                        "on-background": "#111c2d",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#001c37",
+                        "tertiary": "#003c1b",
+                        "surface-container": "#e7eeff",
+                        "surface-deep": "#071D36",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#111c2d",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#d8e3fb",
+                        "background": "#f9f9ff",
+                        "surface-container-low": "#f0f3ff",
+                        "inverse-on-surface": "#ecf1ff",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#d7e3ff",
+                        "secondary-container": "#448ffd",
+                        "success-muted": "#ECFDF5",
+                        "tertiary-fixed": "#7efba4",
+                        "on-surface-variant": "#42474f",
+                        "on-tertiary-fixed-variant": "#005228",
+                        "tertiary-fixed-dim": "#61de8a",
+                        "primary-fixed-dim": "#a0c9ff",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#00562a",
+                        "surface": "#f9f9ff",
+                        "surface-container-high": "#dee8ff",
+                        "secondary": "#005cba",
+                        "secondary-fixed-dim": "#abc7ff",
+                        "on-secondary-fixed-variant": "#00458e",
+                        "surface-container-highest": "#d8e3fb",
+                        "surface-bright": "#f9f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "32px",
+                        "margin-desktop": "64px",
+                        "base": "8px",
+                        "container-max": "1280px",
+                        "section-gap": "160px",
+                        "margin-mobile": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg-mobile": ["Manrope"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-md": ["30px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 20px rgba(15, 76, 129, 0.04);
+        }
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(15, 76, 129, 0.08);
+        }
+        .service-card:hover .service-icon {
+            transform: scale(1.05);
+        }
+        .service-icon {
+            transition: transform 0.3s ease;
+        }
+        .card-bg-overlay {
+            background: linear-gradient(to bottom, rgba(255,255,255,0.98), rgba(255,255,255,1));
+        }
+    </style>
+</head>
+<body class="bg-surface-main text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest/90 backdrop-blur-md dark:bg-surface-deep/90 fixed top-0 w-full z-50 transition-all duration-300 ease-in-out border-b border-outline-variant/20">
+<nav class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">
+                CarePoint Medical Billing
+            </div>
+<div class="hidden md:flex space-x-10 items-center font-body-md text-body-md text-on-surface-variant">
+<a class="hover:text-primary transition-colors duration-200" href="#">Home</a>
+<a class="hover:text-primary transition-colors duration-200" href="#">About</a>
+<a class="text-secondary border-b-2 border-secondary pb-1 font-semibold" href="#">Services</a>
+<a class="hover:text-primary transition-colors duration-200" href="#">Technology</a>
+<a class="hover:text-primary transition-colors duration-200" href="#">Specialties</a>
+<a class="hover:text-primary transition-colors duration-200" href="#">Contact</a>
+</div>
+<button class="hidden md:block bg-primary text-on-primary px-7 py-2.5 rounded-lg font-body-sm text-body-sm hover:bg-primary-container transition-colors duration-200 shadow-sm">
+                Schedule Consultation
+            </button>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</nav>
+</header>
+<!-- Main Content -->
+<main class="flex-grow pt-[140px] pb-section-gap">
+<!-- Hero Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-20 text-center">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-6 tracking-tight">Comprehensive RCM Solutions</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl mx-auto leading-relaxed">
+                Empowering healthcare organizations with precision-driven billing, coding, and practice management services to optimize revenue and ensure compliance.
+            </p>
+</section>
+<!-- Services Grid -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter" id="services-grid">
+<!-- Card 1: Medical Billing -->
+<div class="service-card relative bg-surface-container-lowest rounded-2xl border border-outline-variant/20 overflow-hidden fade-in-up" style="transition-delay: 0.1s;">
+<div class="absolute inset-0 bg-cover bg-center opacity-[0.03]" data-alt="A macro shot of a modern medical office setting with a blurred background, showing a subtle hint of financial charts and a stethoscope. The lighting is bright and airy, emphasizing clean whites, soft grays, and the brand's primary deep blue (#0F4C81). The mood is highly professional, conveying accuracy and premium enterprise healthcare services in a light-mode aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQaUo7JdnP1gONN4djQMH1Enn4fIKtZE3Or9okjdATfjbn7otAJdLKf5E6023EaQ4ibAhyTUqsaukc1FL_NZCz1Lr6q8lKBczz3Nysaca-px5GMr4L1SyaQNmRwmiINFHWw_E5pT3LOYTqKXa2NwV5dxcG8Kz4edC_4PmbjN1xdirmMGO9IzLu3XZSec-2IUNvDHD7np5ESUcLw0o98yx3lp1WfZlCIsIzawVDO802CjLsclGi5XzEpw')"></div>
+<div class="relative z-10 p-8 flex flex-col h-full card-bg-overlay">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center mb-6 text-primary service-icon shadow-sm border border-outline-variant/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3">Medical Billing</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow mb-8 leading-relaxed">
+                            End-to-end claim generation and submission ensuring maximum reimbursement with minimal delays.
+                        </p>
+<a class="inline-flex items-center text-secondary font-body-sm text-body-sm font-semibold hover:text-primary transition-colors group mt-auto" href="#">
+                            Learn More 
+                            <span class="material-symbols-outlined ml-1.5 text-[18px] group-hover:translate-x-1.5 transition-transform duration-300 ease-out">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 2: Medical Coding -->
+<div class="service-card relative bg-surface-container-lowest rounded-2xl border border-outline-variant/20 overflow-hidden fade-in-up" style="transition-delay: 0.15s;">
+<div class="absolute inset-0 bg-cover bg-center opacity-[0.03]" data-alt="Close up of a medical professional's hands interacting with a high-tech tablet displaying abstract medical codes. The environment is sterile, modern, and brightly lit with high-key white lighting. Subtle touches of the brand's deep blue (#0F4C81) add a corporate, trustworthy feel. The image embodies precision and digital healthcare efficiency." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBqV0gz4WlH1jIBwSCeXgd1Lcqq06AN0tyhKhM-V0Csib8RLAA_4-PPu5fbsFhMaI1OqZZw1OyVJKkCwPLSrL0UNqMmISY4XMiUG9NYR9ajrsmIVWk-GF4aHn5AV3KHEpArbo7p-R5vFfiycT0BJRFpXhmXjr4gP3JxVbMisQXybKVASfCGc2GgAGEbXQepQ6znnmPZwrZ5R47MXg1mraqRJAfkq61_uy4yA7CApJsSDlAvlJk7Ufh7AQ')"></div>
+<div class="relative z-10 p-8 flex flex-col h-full card-bg-overlay">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center mb-6 text-primary service-icon shadow-sm border border-outline-variant/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">code</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3">Medical Coding</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow mb-8 leading-relaxed">
+                            Accurate ICD-10 and CPT coding by certified experts to guarantee compliance and optimize claim acceptance.
+                        </p>
+<a class="inline-flex items-center text-secondary font-body-sm text-body-sm font-semibold hover:text-primary transition-colors group mt-auto" href="#">
+                            Learn More 
+                            <span class="material-symbols-outlined ml-1.5 text-[18px] group-hover:translate-x-1.5 transition-transform duration-300 ease-out">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 3: Credentialing -->
+<div class="service-card relative bg-surface-container-lowest rounded-2xl border border-outline-variant/20 overflow-hidden fade-in-up" style="transition-delay: 0.2s;">
+<div class="absolute inset-0 bg-cover bg-center opacity-[0.03]" data-alt="A pristine, modern office desk with a distinguished pen resting on official-looking documents, subtly blurred in the background. The scene is illuminated by natural, bright light, emphasizing a clean, light-mode aesthetic. The color palette focuses on crisp whites and subtle blues, conveying authority, official certification, and premium corporate standards." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuARp4lRouC9mo2g2q0EvnVP7cLm9uQ6d6IQiFRQ9DdtizTkz6UcFep5gPpBg0thrFFCRNq6poo4FVX3pkWZxpCokFQBqCMotCIrfTM6ye6mKwz1Ll_9QOB6V3bH8HTFwuskme6QfBLv9xsw92kkjdy3hV4cuym2WeI6Yg_a4BFN82CY01AvnEpS6kQg5L9ImgsFi5qpWL2HpvM_IfdXx6DTCr8YJ168zgtfusRJzGZqkjOs84GcRJZyIg')"></div>
+<div class="relative z-10 p-8 flex flex-col h-full card-bg-overlay">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center mb-6 text-primary service-icon shadow-sm border border-outline-variant/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3">Credentialing</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow mb-8 leading-relaxed">
+                            Streamlined provider enrollment and primary source verification across all major payer networks.
+                        </p>
+<a class="inline-flex items-center text-secondary font-body-sm text-body-sm font-semibold hover:text-primary transition-colors group mt-auto" href="#">
+                            Learn More 
+                            <span class="material-symbols-outlined ml-1.5 text-[18px] group-hover:translate-x-1.5 transition-transform duration-300 ease-out">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 4: Revenue Cycle Management -->
+<div class="service-card relative bg-surface-container-lowest rounded-2xl border border-outline-variant/20 overflow-hidden fade-in-up" style="transition-delay: 0.25s;">
+<div class="absolute inset-0 bg-cover bg-center opacity-[0.03]" data-alt="Abstract visualization of financial growth in a healthcare setting. Upward trending graphs softly glowing in a bright, modern light-mode environment. The colors are predominantly white and light gray, with strong accents of the brand's deep blue (#0F4C81). The mood is optimistic, professional, and indicative of efficient revenue cycle flow." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDbPOBY75l4UCC7cQ6GPqu29ecIPGb8EltS-O6MA4CbNXPclr2NwTScR1arB5ao-UtpItFTEfTPz1O5EUpdmXCyRanzUHoA_DrnzUQqDtC8hPSsY2yTbsfO6-UhWn3F-VAWb2HZ7HTc4-UhqrIjeCHoIWEWsn_w7k-PTzvN-B91o2-rVjgS_yWqKIDTnDBqj1pTO0LzTNy57XIZxgfeGgxlLNMX_Br7rMPunBK3Mbzj_z2gHswMvcu7yA')"></div>
+<div class="relative z-10 p-8 flex flex-col h-full card-bg-overlay">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center mb-6 text-primary service-icon shadow-sm border border-outline-variant/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3">Revenue Cycle</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow mb-8 leading-relaxed">
+                            Comprehensive oversight of your entire financial process from patient registration to final payment.
+                        </p>
+<a class="inline-flex items-center text-secondary font-body-sm text-body-sm font-semibold hover:text-primary transition-colors group mt-auto" href="#">
+                            Learn More 
+                            <span class="material-symbols-outlined ml-1.5 text-[18px] group-hover:translate-x-1.5 transition-transform duration-300 ease-out">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 5: Insurance Verification -->
+<div class="service-card relative bg-surface-container-lowest rounded-2xl border border-outline-variant/20 overflow-hidden fade-in-up" style="transition-delay: 0.3s;">
+<div class="absolute inset-0 bg-cover bg-center opacity-[0.03]" data-alt="A clean, minimalist shot of a digital interface displaying patient records, subtly blurred. The setting is a bright, high-tech administrative office. Lighting is soft and even, highlighting a pristine white background with subtle blue interface elements. The aesthetic communicates diligence, security, and enterprise-level data handling." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAw8mYluRFILKhEOXt03JIcqToYsFWOn4CAHSyajAKXLNX33FXt6u7DhqwcHUeE5NyMatFl_d7l_QdFeZ37d0pmct23_yxQUaLNURTrvXHatUJqp5VT6uhIHo2YQ1rFODwb6X1XGZWNOX9J7wLy1QLSlhIoaoJqOgukf4UTUmib641j2-2FqxnrhPvdxsbuQgjVsy-5fdc7jNQ5XN1r0zOVSViG4rHOAXr_V9ksrzKh79mq8n0_coD4PA')"></div>
+<div class="relative z-10 p-8 flex flex-col h-full card-bg-overlay">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center mb-6 text-primary service-icon shadow-sm border border-outline-variant/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fact_check</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3">Insurance Verif.</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow mb-8 leading-relaxed">
+                            Proactive verification of patient benefits and coverage to minimize unexpected denials and rejections.
+                        </p>
+<a class="inline-flex items-center text-secondary font-body-sm text-body-sm font-semibold hover:text-primary transition-colors group mt-auto" href="#">
+                            Learn More 
+                            <span class="material-symbols-outlined ml-1.5 text-[18px] group-hover:translate-x-1.5 transition-transform duration-300 ease-out">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 6: Eligibility Verification -->
+<div class="service-card relative bg-surface-container-lowest rounded-2xl border border-outline-variant/20 overflow-hidden fade-in-up" style="transition-delay: 0.35s;">
+<div class="absolute inset-0 bg-cover bg-center opacity-[0.03]" data-alt="A macro focus on a sleek computer mouse resting beside a neat stack of medical forms in a very bright, modern office. The background is a wash of soft white and light gray, with hints of corporate blue. The mood is highly organized, clean, and representative of meticulous administrative processes." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCgguN5VvyYps3d2DoBtgtOYC2eZ7vGBwiPt8Gn6OHb1o1lsZ9Sg2udyLikUHgtPtFCOztukZ7jX8Xiyml2PDdouDpLnpEU0zx84s9dc2NjxuDyoybb3_hOYIexsdHFXZpD-gU5ABP4uyqWydTfY4wrBJ0C-aEbAibWLaZssS8B-QFCvXhw4AQTo8emQjk_Ec3AidLLiTYEHC59XOoUOc3I3ophCR7IB4OJxnmc0H7w-HoQxwL9QNoeYg')"></div>
+<div class="relative z-10 p-8 flex flex-col h-full card-bg-overlay">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center mb-6 text-primary service-icon shadow-sm border border-outline-variant/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">how_to_reg</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3">Eligibility Verif.</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow mb-8 leading-relaxed">
+                            Real-time patient eligibility checks to ensure services are covered before the patient arrives.
+                        </p>
+<a class="inline-flex items-center text-secondary font-body-sm text-body-sm font-semibold hover:text-primary transition-colors group mt-auto" href="#">
+                            Learn More 
+                            <span class="material-symbols-outlined ml-1.5 text-[18px] group-hover:translate-x-1.5 transition-transform duration-300 ease-out">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 7: Charge Entry -->
+<div class="service-card relative bg-surface-container-lowest rounded-2xl border border-outline-variant/20 overflow-hidden fade-in-up" style="transition-delay: 0.4s;">
+<div class="absolute inset-0 bg-cover bg-center opacity-[0.03]" data-alt="Abstract geometric composition representing data entry. Soft, rounded 3D shapes in pristine white and deep blue (#0F4C81) interlock in a bright, clean space. The lighting is studio-quality, creating soft shadows that give a premium, tactile feel to the digital concept. The mood is precise and modern." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAU5E05f6hvU-j2XjFky0zZmpfPwUno35a-lDE_9qthHR5rzGrEtA9QRZwkLlqaZl4eI1ZnV0K0FQ20Wg-uWUkVXmgDPls5XANT3j4sK5gC-AJsRaCYBWoOlSnoQWVrEgNOxl-S78L87d4_mfNUtkpWricFeeOGi0jH_Kz6qGFLXp4XZsHcBx1gteu2u24U4sgMz6TaX1JjwImTo0zUAovNH7kPN2-L8q635TfniVIM6B8kZy9Yl9fPsQ')"></div>
+<div class="relative z-10 p-8 flex flex-col h-full card-bg-overlay">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center mb-6 text-primary service-icon shadow-sm border border-outline-variant/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">keyboard</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3">Charge Entry</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow mb-8 leading-relaxed">
+                            Meticulous entry of demographic and charge data to establish a clean foundation for every claim.
+                        </p>
+<a class="inline-flex items-center text-secondary font-body-sm text-body-sm font-semibold hover:text-primary transition-colors group mt-auto" href="#">
+                            Learn More 
+                            <span class="material-symbols-outlined ml-1.5 text-[18px] group-hover:translate-x-1.5 transition-transform duration-300 ease-out">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 8: Payment Posting -->
+<div class="service-card relative bg-surface-container-lowest rounded-2xl border border-outline-variant/20 overflow-hidden fade-in-up" style="transition-delay: 0.45s;">
+<div class="absolute inset-0 bg-cover bg-center opacity-[0.03]" data-alt="A blurred background showing a modern accounting environment with a subtle focus on a calculator and a sleek laptop. The scene is drenched in bright, natural light, utilizing a clean white and deep blue palette. The image projects financial accuracy, transparency, and enterprise-grade accounting in a light-mode style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAZ2vz49xzWU2xh-ufevN0kyQ5RTbDd__CJ4IINU5pOQxnvQkwSDhaE7rXleF9JE6q4NxYo3UCkwnmwFS87tKmkTJ6EUQQ0pzjib3SeS-aDvqjFm4kjkDRWM21rzrtWqjiodl43fw5fyaUQ5Vjrag4V0zntBV0Eo2cZjub4dyIu_hEe-JjCT9xT6HiIb5H7O50ALVBxEqBlR7UM0VgoDduz3D5T4TvWgV3RIQ40ztd5Nxm9YefvnTNe6g')"></div>
+<div class="relative z-10 p-8 flex flex-col h-full card-bg-overlay">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center mb-6 text-primary service-icon shadow-sm border border-outline-variant/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3">Payment Posting</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow mb-8 leading-relaxed">
+                            Accurate and swift posting of all ERAs and manual payments to keep patient accounts current.
+                        </p>
+<a class="inline-flex items-center text-secondary font-body-sm text-body-sm font-semibold hover:text-primary transition-colors group mt-auto" href="#">
+                            Learn More 
+                            <span class="material-symbols-outlined ml-1.5 text-[18px] group-hover:translate-x-1.5 transition-transform duration-300 ease-out">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 9: Denial Management -->
+<div class="service-card relative bg-surface-container-lowest rounded-2xl border border-outline-variant/20 overflow-hidden fade-in-up" style="transition-delay: 0.5s;">
+<div class="absolute inset-0 bg-cover bg-center opacity-[0.03]" data-alt="A conceptual image of a maze being solved, rendered in a clean, minimalist 3D style. The walls of the maze are pristine white, and the correct path is highlighted in a subtle blue glow. The lighting is bright and soft. The image metaphorically represents solving complex issues and overcoming obstacles in a professional, high-end manner." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCjFD1Sp9ScgD-0jLILI10QhKtYxfuPSfxPCR-ICjxPjFHAAKUoAj_2UU5_xV2tThgBQE9G221cjutWgT72E1esv2zwCDL2lDV_Sd2oADuqxUfQZwZy6EHReZJQXjYvV1FRecJPHSTMIperXWmZ3oeZve2CVmu6fX1l7RrIw405J9QO7GiG9IZWMosjuzHiwlD6RUfrlF5VAv0V39EAB690qVLnUvejlkDB5sdBUCCvaY-R_MK_WFoN8A')"></div>
+<div class="relative z-10 p-8 flex flex-col h-full card-bg-overlay">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center mb-6 text-primary service-icon shadow-sm border border-outline-variant/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">gavel</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3">Denial Management</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow mb-8 leading-relaxed">
+                            Aggressive investigation and appealing of denied claims to recover lost revenue effectively.
+                        </p>
+<a class="inline-flex items-center text-secondary font-body-sm text-body-sm font-semibold hover:text-primary transition-colors group mt-auto" href="#">
+                            Learn More 
+                            <span class="material-symbols-outlined ml-1.5 text-[18px] group-hover:translate-x-1.5 transition-transform duration-300 ease-out">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 10: Accounts Receivable -->
+<div class="service-card relative bg-surface-container-lowest rounded-2xl border border-outline-variant/20 overflow-hidden fade-in-up" style="transition-delay: 0.55s;">
+<div class="absolute inset-0 bg-cover bg-center opacity-[0.03]" data-alt="A macro shot of overlapping translucent folders in a bright, modern filing system. The folders are rendered in subtle shades of white, gray, and deep blue (#0F4C81). The depth of field is shallow, creating a clean, abstract representation of managing extensive records and accounts in a premium enterprise setting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDcNZHm5swgA1KoQyPIt19iYK9-iEShyw2DiQGdTbDFhami8ezED008hfqi_9W8dYKHuAMI0fgcqJxej3HoBNqVQH1NZ8wEbdPVqleXBe_U-Wy0u44GUtjWnkgxX_SbMx3UZglT6C1O5dIPK0f5IvYmweloH3O8V1kxDd7bhtJCh3ETGrxsCAHVyQndCPu8e7VaXmF28wQ7v81l9qHvJVPuvpxDAq7clJuRj2EqG2KpYRaEyjDGsM0n7g')"></div>
+<div class="relative z-10 p-8 flex flex-col h-full card-bg-overlay">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center mb-6 text-primary service-icon shadow-sm border border-outline-variant/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3">Accounts Receivable</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow mb-8 leading-relaxed">
+                            Strategic follow-up on outstanding balances to improve cash flow and reduce AR days.
+                        </p>
+<a class="inline-flex items-center text-secondary font-body-sm text-body-sm font-semibold hover:text-primary transition-colors group mt-auto" href="#">
+                            Learn More 
+                            <span class="material-symbols-outlined ml-1.5 text-[18px] group-hover:translate-x-1.5 transition-transform duration-300 ease-out">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 11: Prior Authorization -->
+<div class="service-card relative bg-surface-container-lowest rounded-2xl border border-outline-variant/20 overflow-hidden fade-in-up" style="transition-delay: 0.6s;">
+<div class="absolute inset-0 bg-cover bg-center opacity-[0.03]" data-alt="A minimalist visual of a green 'approved' checkmark subtly projected onto a pristine white surface, next to a modern digital tablet. The environment is extremely clean and well-lit, utilizing high-key lighting to emphasize transparency, speed, and premium operational efficiency in healthcare." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBx34JpvAYfYhwsGFWt-ExcUL9cvOS_60CL99tHO9dnzW34e1XCxoma8-_6jVdFHTwPsVf8gQ7hR_cyEalTUOBjKf2OmgLkONXjdGQifqwiQnR1tpuHXDfSscYEEOpDuFPNPGXj6RHaFdOr0N1Xw4N6MaWcppn5ZevQh_Tc_qLjcbTO-8eNn343PABJHueeNsrcyzJdiy6RXRhmzpZi_GeysANAu9sSl4e_FoDgqUw_AdDjah7GUux19w')"></div>
+<div class="relative z-10 p-8 flex flex-col h-full card-bg-overlay">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center mb-6 text-primary service-icon shadow-sm border border-outline-variant/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">rule_folder</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3">Prior Authorization</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow mb-8 leading-relaxed">
+                            Expedited handling of pre-authorizations to prevent delays in essential patient care.
+                        </p>
+<a class="inline-flex items-center text-secondary font-body-sm text-body-sm font-semibold hover:text-primary transition-colors group mt-auto" href="#">
+                            Learn More 
+                            <span class="material-symbols-outlined ml-1.5 text-[18px] group-hover:translate-x-1.5 transition-transform duration-300 ease-out">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 12: Provider Enrollment -->
+<div class="service-card relative bg-surface-container-lowest rounded-2xl border border-outline-variant/20 overflow-hidden fade-in-up" style="transition-delay: 0.65s;">
+<div class="absolute inset-0 bg-cover bg-center opacity-[0.03]" data-alt="A blurred view of a professional shaking hands in a bright, modern corporate lobby. The focus is soft, emphasizing the clean architectural lines of the background in whites and soft grays. The scene conveys trust, partnership, and successful onboarding in a high-end enterprise environment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtmF0Lu1VR37wiXN1hy5dLu4TAKobltCWGH7FKzJ0YQATjeg-r3AFnUSpbCY5-jYSWYnm8kiZN6udJ7IQtKD4s_LtF_UxjUzdsxYm3TmSk7Gy1Ok6wvw8xZnzVmx4VRFzbV-I4L5bMHd7SE6baOr_OSoKsdpPSmjmOkT57yO9apLlrpOxRsqxFtHtY6q9fMk12eUrYJR1GXINy5ycef40uXmSDhr8OBtmwr_c-8GBcwOClc9yol2YiGQ')"></div>
+<div class="relative z-10 p-8 flex flex-col h-full card-bg-overlay">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center mb-6 text-primary service-icon shadow-sm border border-outline-variant/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">badge</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3">Provider Enrollment</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow mb-8 leading-relaxed">
+                            Navigating complex enrollment paperwork to seamlessly integrate new providers into billing systems.
+                        </p>
+<a class="inline-flex items-center text-secondary font-body-sm text-body-sm font-semibold hover:text-primary transition-colors group mt-auto" href="#">
+                            Learn More 
+                            <span class="material-symbols-outlined ml-1.5 text-[18px] group-hover:translate-x-1.5 transition-transform duration-300 ease-out">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-deep dark:bg-surface-deep w-full text-on-secondary font-body-sm text-body-sm grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-4 flex justify-between items-center mb-8 border-b border-on-secondary/20 pb-8">
+<div class="font-headline-sm text-headline-sm font-bold text-on-secondary">
+                CarePoint Medical Billing
+            </div>
+<div class="text-on-secondary-container text-xs">
+                © 2024 CarePoint Medical Billing LLC. All rights reserved.
+            </div>
+</div>
+<div class="flex flex-col space-y-4">
+<h4 class="font-label-caps text-label-caps text-on-secondary/70">Company</h4>
+<a class="text-on-secondary-container dark:text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">About Us</a>
+<a class="text-on-secondary-container dark:text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">Careers</a>
+<a class="text-on-secondary-container dark:text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">Contact Support</a>
+</div>
+<div class="flex flex-col space-y-4">
+<h4 class="font-label-caps text-label-caps text-on-secondary/70">Services</h4>
+<a class="text-on-secondary-container dark:text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">Fast Claims</a>
+<a class="text-on-secondary-container dark:text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">Certified Experts</a>
+<a class="text-on-secondary-container dark:text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">24/7 Support</a>
+</div>
+<div class="flex flex-col space-y-4">
+<h4 class="font-label-caps text-label-caps text-on-secondary/70">Security</h4>
+<a class="text-on-secondary-container dark:text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">HIPAA Compliant</a>
+<a class="text-on-secondary-container dark:text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">Secure Infrastructure</a>
+</div>
+<div class="flex flex-col space-y-4">
+<h4 class="font-label-caps text-label-caps text-on-secondary/70">Legal</h4>
+<a class="text-on-secondary-container dark:text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">Privacy Policy</a>
+<a class="text-on-secondary-container dark:text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">Terms of Service</a>
+</div>
+</footer>
+<script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.fade-in-up').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body></html>

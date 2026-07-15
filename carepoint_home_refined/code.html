@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CarePoint Medical Billing - Transforming Medical Billing Into Faster Revenue</title>
+<meta content="Helping healthcare providers maximize reimbursements, reduce claim denials, streamline revenue cycle management, and improve financial performance." name="description"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary": "#ffffff",
+                      "surface-deep": "#071D36",
+                      "surface-main": "#F8FAFC",
+                      "on-secondary-fixed": "#001b3f",
+                      "surface-bright": "#f9f9ff",
+                      "primary-fixed": "#d2e4ff",
+                      "on-secondary-container": "#002959",
+                      "surface-container": "#e7eeff",
+                      "primary-fixed-dim": "#a0c9ff",
+                      "outline": "#727780",
+                      "inverse-on-surface": "#ecf1ff",
+                      "background": "#f9f9ff",
+                      "error": "#ba1a1a",
+                      "on-surface-variant": "#42474f",
+                      "surface-container-highest": "#d8e3fb",
+                      "secondary-container": "#448ffd",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed": "#d7e3ff",
+                      "primary-container": "#0f4c81",
+                      "surface-variant": "#d8e3fb",
+                      "on-primary-fixed": "#001c37",
+                      "tertiary": "#003c1b",
+                      "inverse-primary": "#a0c9ff",
+                      "outline-variant": "#c2c7d1",
+                      "on-background": "#111c2d",
+                      "surface-container-high": "#dee8ff",
+                      "on-error-container": "#93000a",
+                      "error-container": "#ffdad6",
+                      "on-tertiary-fixed": "#00210c",
+                      "inverse-surface": "#263143",
+                      "secondary": "#005cba",
+                      "tertiary-container": "#00562a",
+                      "surface-dim": "#cfdaf2",
+                      "secondary-fixed-dim": "#abc7ff",
+                      "on-tertiary-container": "#52d17e",
+                      "surface-tint": "#2d6197",
+                      "success-muted": "#ECFDF5",
+                      "on-primary-fixed-variant": "#07497d",
+                      "tertiary-fixed-dim": "#61de8a",
+                      "accent-sky": "#00BFFF",
+                      "on-tertiary-fixed-variant": "#005228",
+                      "surface": "#f9f9ff",
+                      "surface-container-low": "#f0f3ff",
+                      "primary": "#00355f",
+                      "on-primary-container": "#8ebdf9",
+                      "on-error": "#ffffff",
+                      "on-surface": "#111c2d",
+                      "tertiary-fixed": "#7efba4",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-fixed-variant": "#00458e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "container-max": "1280px",
+                      "gutter": "24px",
+                      "margin-desktop": "48px",
+                      "margin-mobile": "16px",
+                      "section-gap": "120px"
+              },
+              "fontFamily": {
+                      "display-lg-mobile": [
+                              "Manrope"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Manrope"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-sm": [
+                              "Manrope"
+                      ],
+                      "display-lg": [
+                              "Manrope"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "30px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-sm": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04), 0 24px 64px rgba(0, 0, 0, 0.04);
+        }
+        .ambient-shadow {
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02), 0 16px 48px rgba(0, 0, 0, 0.04);
+        }
+        .btn-premium {
+            border: 0.5px solid rgba(255, 255, 255, 0.2);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .animate-fade-in-up {
+            animation: springUp 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        @keyframes springUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hover-lift {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08), 0 24px 80px rgba(0, 0, 0, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-surface-main text-on-surface font-body-md antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] py-4 bg-transparent" id="navbar">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed tracking-tight">
+                CarePoint Medical Billing
+            </div>
+<div class="hidden md:flex space-x-8 items-center">
+<a class="text-secondary dark:text-secondary-fixed border-b-2 border-secondary pb-1 font-body-md text-body-md transition-all duration-300 ease-in-out font-medium" href="#">Home</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md font-medium" href="#">About</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md font-medium" href="#">Services</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md font-medium" href="#">Technology</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md font-medium" href="#">Specialties</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md font-medium" href="#">Contact</a>
+</div>
+<button class="hidden md:block bg-primary text-on-primary font-body-md text-body-md py-2.5 px-6 rounded-[8px] btn-premium hover:shadow-lg hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] font-medium">
+                Schedule Consultation
+            </button>
+<button aria-label="Open Menu" class="md:hidden text-primary">
+<span class="material-symbols-outlined text-[24px]">menu</span>
+</button>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<header class="relative min-h-screen flex items-center pt-24 pb-[160px] overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Healthcare professionals reviewing medical data on transparent screens in a modern clinical setting" class="w-full h-full object-cover brightness-105 saturate-[0.85] contrast-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1U_whXwoIvAEeIhrd3ikIDbBDY2zIlYzl85Nmn7MrvJ2hngpdNNSlXGhTovKXtZx6LsOtCl07-1ZuNCN-YuYm_eFro9rNv-CzGKINrGnxrzbmdYIbzbCSvDdC1_v9MOIdc6bZ0SNZ9XSuuEmNReHXA8GMXfzRPhXWt1GBd7VF3IgZMsmN7jBAxW50jNphRIQqqe2TMbk0gmrw2aXA2DMInsnp3TbfgoYGR5ZHZK4_tedT6kCfjg0DLA"/>
+<div class="absolute inset-0 bg-gradient-to-r from-surface-main/95 via-surface-main/80 to-surface-main/30 md:to-surface-main/10"></div>
+</div>
+<div class="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
+<div class="space-y-8 animate-fade-in-up" style="animation-delay: 0.1s;">
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary tracking-[-0.02em]">
+                    Transforming Medical Billing Into Faster Revenue.
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-[1.6]">
+                    Helping healthcare providers maximize reimbursements, reduce claim denials, streamline revenue cycle management, and improve financial performance.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-primary text-on-primary font-body-md text-body-md py-3.5 px-8 rounded-[8px] btn-premium hover:shadow-lg hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] text-center font-medium">
+                        Schedule Consultation
+                    </button>
+<button class="bg-white border-[0.5px] border-outline-variant/50 text-secondary font-body-md text-body-md py-3.5 px-8 rounded-[8px] hover:bg-surface-main hover:shadow-md hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] text-center font-medium">
+                        Explore Services
+                    </button>
+</div>
+<!-- Trust Badges -->
+<div class="pt-8 border-t border-outline-variant/30 flex flex-wrap gap-6 items-center">
+<div class="flex items-center text-on-surface-variant font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[18px] text-tertiary-container mr-1.5">verified_user</span> HIPAA Compliant
+                    </div>
+<div class="flex items-center text-on-surface-variant font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[18px] text-tertiary-container mr-1.5">lock</span> Secure Infrastructure
+                    </div>
+<div class="flex items-center text-on-surface-variant font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[18px] text-tertiary-container mr-1.5">military_tech</span> Certified Experts
+                    </div>
+</div>
+</div>
+<!-- Floating Cards -->
+<div class="relative hidden lg:block h-[500px] animate-fade-in-up" style="animation-delay: 0.3s;">
+<div class="absolute top-10 right-10 w-64 glass-card rounded-[16px] p-6 z-20 hover-lift">
+<div class="flex items-center justify-between mb-4">
+<div class="bg-success-muted p-2 rounded-[8px]">
+<span class="material-symbols-outlined text-tertiary-container">trending_up</span>
+</div>
+<span class="font-label-caps text-label-caps text-tertiary-container font-bold">+15% Month</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Revenue Growth</div>
+<div class="font-headline-sm text-headline-sm text-primary mt-1 tracking-tight">$500M+ Processed</div>
+</div>
+<div class="absolute bottom-20 left-10 w-72 glass-card rounded-[16px] p-6 z-30 hover-lift">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 bg-surface-container-high rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">task_alt</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-primary tracking-tight">99%</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Clean Claim Rate</div>
+</div>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2 mt-2 overflow-hidden">
+<div class="bg-secondary h-2 rounded-full" style="width: 99%"></div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Stats Section -->
+<section class="py-[160px] bg-gradient-to-b from-surface-container-lowest to-surface-main">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-gutter">
+<div class="text-center animate-fade-in-up" style="animation-delay: 0.1s;">
+<div class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-secondary mb-3 tracking-[-0.02em]">
+                        $500M+
+                    </div>
+<div class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase">Claims Processed</div>
+</div>
+<div class="text-center animate-fade-in-up" style="animation-delay: 0.2s;">
+<div class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-secondary mb-3 tracking-[-0.02em]">
+                        99%
+                    </div>
+<div class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase">First Pass Approval</div>
+</div>
+<div class="text-center animate-fade-in-up" style="animation-delay: 0.3s;">
+<div class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-secondary mb-3 tracking-[-0.02em]">
+                        500+
+                    </div>
+<div class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase">Healthcare Providers</div>
+</div>
+<div class="text-center animate-fade-in-up" style="animation-delay: 0.4s;">
+<div class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-secondary mb-3 tracking-[-0.02em]">
+                        20+
+                    </div>
+<div class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase">Years Combined Experience</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Section (Bento Grid) -->
+<section class="py-[160px] bg-surface-main">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="text-center mb-20 max-w-2xl mx-auto">
+<h2 class="font-headline-md text-headline-md md:text-[40px] md:leading-[1.2] text-primary mb-6 tracking-tight font-bold">Comprehensive Revenue Solutions</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-[1.6]">End-to-end medical billing services designed to simplify your operations and maximize your bottom line.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Large Card -->
+<div class="md:col-span-2 bg-surface-container-lowest rounded-[16px] p-10 border border-outline-variant/20 ambient-shadow hover-lift group flex flex-col justify-between overflow-hidden relative">
+<div class="absolute inset-0 z-0 opacity-10 group-hover:opacity-15 transition-opacity duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+<img alt="Abstract modern line art representing financial growth and smooth workflows in a healthcare setting, light blue and silver tones, clean professional SaaS style" class="w-full h-full object-cover brightness-105 saturate-[0.85] contrast-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByghFNlDegmLUPtPGqrRhUOFQZldjTlkhCivfOlTD_L34UaXGhkTL5OGB0vuQOvPZQsdm-aqU0rN7gk881wzgztmffNIkXz_RmCqTijq4oA2i1XF--pz5kny_qGKNe-W-VQhj7JCSekByLvy4XdtBRLu2NhGJyO3DI2l4w0kr5JdMQGj5PjjpEKG7Un07hi0pOJMTnq4FFHN44mhwQNK_JKJllr9LjMWfVZbR5PNr2MH0qaqcRfwBUDA"/>
+</div>
+<div class="relative z-10">
+<div class="w-14 h-14 bg-primary-container/5 rounded-[12px] flex items-center justify-center mb-8 border border-primary-container/10">
+<span class="material-symbols-outlined text-primary-container text-[28px]">receipt_long</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm md:text-[28px] text-primary mb-4 tracking-tight">Revenue Cycle Management</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 max-w-lg leading-[1.6]">Complete oversight of your financial lifecycle. We manage patient registration, coding, claims submission, and payment posting to ensure seamless cash flow.</p>
+</div>
+<div class="relative z-10 mt-auto">
+<a class="inline-flex items-center font-body-md text-body-md text-secondary font-medium group-hover:text-primary transition-colors" href="#">
+                            Learn More <span class="material-symbols-outlined text-[20px] ml-1.5 group-hover:translate-x-1.5 transition-transform duration-300">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Standard Card -->
+<div class="bg-surface-container-lowest rounded-[16px] p-10 border border-outline-variant/20 ambient-shadow hover-lift group flex flex-col justify-between">
+<div>
+<div class="w-14 h-14 bg-secondary/5 rounded-[12px] flex items-center justify-center mb-8 border border-secondary/10">
+<span class="material-symbols-outlined text-secondary text-[28px]">healing</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-4 tracking-tight">Medical Billing</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-8 leading-[1.6]">Accurate charge entry, precise coding, and timely claim submissions to maximize your reimbursements.</p>
+</div>
+<a class="inline-flex items-center font-body-sm text-body-sm text-secondary font-medium group-hover:text-primary transition-colors" href="#">
+                        Learn More <span class="material-symbols-outlined text-[18px] ml-1.5 group-hover:translate-x-1.5 transition-transform duration-300">arrow_forward</span>
+</a>
+</div>
+<!-- Standard Card -->
+<div class="bg-surface-container-lowest rounded-[16px] p-10 border border-outline-variant/20 ambient-shadow hover-lift group flex flex-col justify-between">
+<div>
+<div class="w-14 h-14 bg-secondary/5 rounded-[12px] flex items-center justify-center mb-8 border border-secondary/10">
+<span class="material-symbols-outlined text-secondary text-[28px]">fact_check</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-4 tracking-tight">Insurance Verification</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-8 leading-[1.6]">Proactive eligibility checks to prevent denials before the patient even walks through the door.</p>
+</div>
+<a class="inline-flex items-center font-body-sm text-body-sm text-secondary font-medium group-hover:text-primary transition-colors" href="#">
+                        Learn More <span class="material-symbols-outlined text-[18px] ml-1.5 group-hover:translate-x-1.5 transition-transform duration-300">arrow_forward</span>
+</a>
+</div>
+<!-- Standard Card -->
+<div class="bg-surface-container-lowest rounded-[16px] p-10 border border-outline-variant/20 ambient-shadow hover-lift group flex flex-col justify-between">
+<div>
+<div class="w-14 h-14 bg-error/5 rounded-[12px] flex items-center justify-center mb-8 border border-error/10">
+<span class="material-symbols-outlined text-error text-[28px]">warning</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-4 tracking-tight">Denial Management</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-8 leading-[1.6]">Aggressive follow-up and strategic appeals to recover revenue from delayed or denied claims.</p>
+</div>
+<a class="inline-flex items-center font-body-sm text-body-sm text-secondary font-medium group-hover:text-primary transition-colors" href="#">
+                        Learn More <span class="material-symbols-outlined text-[18px] ml-1.5 group-hover:translate-x-1.5 transition-transform duration-300">arrow_forward</span>
+</a>
+</div>
+<!-- Standard Card -->
+<div class="bg-surface-container-lowest rounded-[16px] p-10 border border-outline-variant/20 ambient-shadow hover-lift group flex flex-col justify-between">
+<div>
+<div class="w-14 h-14 bg-tertiary-container/5 rounded-[12px] flex items-center justify-center mb-8 border border-tertiary-container/10">
+<span class="material-symbols-outlined text-tertiary-container text-[28px]">badge</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-4 tracking-tight">Credentialing</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-8 leading-[1.6]">Streamlined provider enrollment and credentialing maintenance to ensure you stay in-network.</p>
+</div>
+<a class="inline-flex items-center font-body-sm text-body-sm text-secondary font-medium group-hover:text-primary transition-colors" href="#">
+                        Learn More <span class="material-symbols-outlined text-[18px] ml-1.5 group-hover:translate-x-1.5 transition-transform duration-300">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="bg-surface-deep py-[160px] relative overflow-hidden">
+<!-- Abstract background pattern -->
+<div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 48px 48px;"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-surface-deep/50"></div>
+<div class="max-w-3xl mx-auto px-margin-mobile text-center relative z-10">
+<h2 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-secondary mb-8 tracking-[-0.02em]">
+                Let's Optimize Your Revenue Cycle.
+            </h2>
+<p class="font-body-lg text-body-lg text-on-secondary/80 mb-12 max-w-2xl mx-auto leading-[1.6]">
+                Stop leaving money on the table. Partner with CarePoint for transparent, efficient, and high-yield medical billing solutions.
+            </p>
+<button class="bg-secondary text-on-secondary font-body-lg text-body-lg py-4 px-10 rounded-[12px] btn-premium hover:bg-secondary-container hover:-translate-y-1 hover:scale-[1.02] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-[0_8px_32px_rgba(68,143,253,0.25)] font-medium">
+                Schedule Free Consultation
+            </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-surface-deep dark:bg-surface-deep grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-[120px] max-w-container-max mx-auto relative z-10 border-t border-on-secondary/5">
+<div class="col-span-1 md:col-span-4 mb-12">
+<div class="font-headline-sm text-headline-sm font-bold text-on-secondary tracking-tight">
+                CarePoint Medical Billing
+            </div>
+</div>
+<div class="flex flex-col space-y-5">
+<span class="text-on-secondary font-bold font-body-sm text-body-sm cursor-pointer">HIPAA Compliant</span>
+<span class="text-on-secondary-container dark:text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer font-body-sm text-body-sm">Secure Infrastructure</span>
+<span class="text-on-secondary-container dark:text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer font-body-sm text-body-sm">Certified Experts</span>
+</div>
+<div class="flex flex-col space-y-5">
+<span class="text-on-secondary-container dark:text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer font-body-sm text-body-sm">Fast Claims</span>
+<span class="text-on-secondary-container dark:text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer font-body-sm text-body-sm">24/7 Support</span>
+<span class="text-on-secondary-container dark:text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer font-body-sm text-body-sm">Privacy Policy</span>
+</div>
+<div class="flex flex-col space-y-5">
+<span class="text-on-secondary-container dark:text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer font-body-sm text-body-sm">Terms of Service</span>
+<span class="text-on-secondary-container dark:text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer font-body-sm text-body-sm">Contact Support</span>
+</div>
+<div class="col-span-1 md:col-span-4 mt-16 pt-8 border-t border-on-secondary/10">
+<p class="font-body-sm text-body-sm text-on-secondary-container dark:text-on-secondary-container">© 2024 CarePoint Medical Billing LLC. All rights reserved.</p>
+</div>
+</footer>
+<script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                nav.classList.add('bg-surface-container-lowest/90', 'backdrop-blur-xl', 'shadow-[0_4px_24px_rgba(0,0,0,0.04)]', 'border-b', 'border-outline-variant/10');
+                nav.classList.remove('bg-transparent', 'py-4');
+                nav.classList.add('py-3');
+            } else {
+                nav.classList.remove('bg-surface-container-lowest/90', 'backdrop-blur-xl', 'shadow-[0_4px_24px_rgba(0,0,0,0.04)]', 'border-b', 'border-outline-variant/10', 'py-3');
+                nav.classList.add('bg-transparent', 'py-4');
+            }
+        });
+    </script>
+</body></html>

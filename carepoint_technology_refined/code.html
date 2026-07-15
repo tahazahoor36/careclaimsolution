@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Technology - CarePoint Medical Billing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#111c2d",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#d8e3fb",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#263143",
+                        "accent-sky": "#00BFFF",
+                        "tertiary": "#003c1b",
+                        "secondary-container": "#448ffd",
+                        "secondary": "#005cba",
+                        "surface-bright": "#f9f9ff",
+                        "tertiary-container": "#00562a",
+                        "on-tertiary-fixed-variant": "#005228",
+                        "on-primary-fixed-variant": "#07497d",
+                        "on-primary": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "on-secondary-container": "#002959",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#111c2d",
+                        "success-muted": "#ECFDF5",
+                        "on-primary-fixed": "#001c37",
+                        "on-secondary-fixed": "#001b3f",
+                        "surface-container-low": "#f0f3ff",
+                        "primary": "#00355f",
+                        "on-surface-variant": "#42474f",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#d7e3ff",
+                        "surface-tint": "#2d6197",
+                        "on-tertiary-container": "#52d17e",
+                        "surface-container": "#e7eeff",
+                        "inverse-primary": "#a0c9ff",
+                        "surface-main": "#F8FAFC",
+                        "surface-dim": "#cfdaf2",
+                        "primary-fixed": "#d2e4ff",
+                        "outline": "#727780",
+                        "inverse-on-surface": "#ecf1ff",
+                        "primary-fixed-dim": "#a0c9ff",
+                        "surface-container-high": "#dee8ff",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#d8e3fb",
+                        "primary-container": "#0f4c81",
+                        "outline-variant": "#c2c7d1",
+                        "background": "#f9f9ff",
+                        "on-tertiary-fixed": "#00210c",
+                        "on-primary-container": "#8ebdf9",
+                        "surface-deep": "#071D36",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#61de8a",
+                        "secondary-fixed-dim": "#abc7ff",
+                        "on-secondary-fixed-variant": "#00458e",
+                        "tertiary-fixed": "#7efba4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "base": "8px",
+                        "section-gap": "120px",
+                        "gutter": "24px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Manrope"],
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-sm": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "display-lg-mobile": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-md": ["30px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .premium-shadow {
+            box-shadow: 0 4px 20px rgba(15, 76, 129, 0.04);
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .workflow-line {
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 1px; /* Thinner line */
+            background: linear-gradient(to bottom, #d8e3fb 0%, #005cba 50%, #d8e3fb 100%);
+            z-index: 0;
+        }
+
+        @media (min-width: 768px) {
+            .workflow-line {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .workflow-step:nth-child(even) .workflow-content {
+                margin-left: 50%;
+                padding-left: 48px;
+            }
+            .workflow-step:nth-child(odd) .workflow-content {
+                margin-right: 50%;
+                padding-right: 48px;
+                text-align: right;
+            }
+            .workflow-step:nth-child(odd) .workflow-dot {
+                right: -10px; /* Adjusted for thinner line/dot */
+                left: auto;
+            }
+        }
+        
+        /* Floating animation for UI cards */
+        @keyframes float-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float-subtle {
+            animation: float-subtle 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-surface-main text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-md shadow-sm transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-headline-sm text-headline-sm font-bold text-primary">
+                CarePoint Medical Billing
+            </div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md" href="#">About</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md" href="#">Services</a>
+<a class="text-secondary border-b-2 border-secondary pb-1 font-body-md text-body-md font-bold" href="#">Technology</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md" href="#">Specialties</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md" href="#">Contact</a>
+</div>
+<button class="bg-primary text-on-primary font-body-md text-body-md px-6 py-2 rounded-lg hover:bg-primary/90 transition-all shadow-md hover:shadow-lg hidden md:block">
+                Schedule Consultation
+            </button>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+</div>
+</nav>
+<main class="pt-24 md:pt-32 pb-section-gap">
+<!-- Section 1: Hero -->
+<section class="relative px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-section-gap">
+<!-- Ambient Gradient Background -->
+<div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-secondary/5 via-transparent to-transparent rounded-[3rem]"></div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
+<div class="space-y-8 z-10 scroll-reveal">
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary">
+                        Intelligent Technology for Precise Billing.
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                        Our proprietary tech stack automates workflows, ensures 100% compliance, and accelerates your revenue cycle, bringing clarity and control to medical billing.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-primary text-on-primary font-body-md text-body-md px-8 py-3 rounded-lg hover:bg-primary/90 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
+                            Explore the Platform
+                        </button>
+<button class="border border-surface-container-highest bg-surface-container-lowest text-secondary font-body-md text-body-md px-8 py-3 rounded-lg hover:border-secondary/30 hover:bg-surface-container-low transition-all shadow-sm">
+                            View Tech Specs
+                        </button>
+</div>
+</div>
+<div class="relative z-10 mt-12 lg:mt-0 scroll-reveal" style="transition-delay: 0.2s;">
+<div class="glass-panel p-2 rounded-2xl relative overflow-hidden">
+<img class="w-full h-auto rounded-xl object-cover shadow-lg border border-surface-container-highest" data-alt="A sleek, modern premium laptop open on a clean desk, displaying a sophisticated medical billing dashboard interface with clean data visualizations, charts, and a light-mode SaaS aesthetic. The lighting is bright and professional, emphasizing high-end technology and clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkr37IYszYaG3EnFVKPSFCzgWmef61YjE2iy5SIFf6r6uSbC4wgYA9sgPfVkEwUgJDmlbzeM01p0zA-va_7H8KMMh4wodhxo17W_W6Ersu9n97Ed-SpUjcdQ8z92Kbh-kfzfA2SczjRUQtNYF5nTBWjWiOJAzwuIUuaQrAbJoSY2Pax_ya0afNVvOl3sYH0_sf_KwmkuA8dl274w-hw1SWygSt-SQLIBF9WMD4V9sOzqv74s5dS2ayqw"/>
+<!-- Decorative floating elements -->
+<div class="absolute top-8 -left-8 bg-surface-container-lowest/90 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-surface-container-highest animate-float-subtle">
+<div class="flex items-center gap-3">
+<div class="bg-success-muted p-2 rounded-full text-tertiary-container">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant">Claims Clean Rate</div>
+<div class="font-headline-sm text-headline-sm text-primary">99.8%</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Interactive Workflow -->
+<section class="bg-surface-container-lowest py-section-gap border-y border-surface-container-highest">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="text-center mb-16 scroll-reveal">
+<h2 class="font-headline-md text-headline-md text-primary mb-4">The CarePoint Workflow</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">A seamless, technology-driven journey from patient intake to optimal revenue realization.</p>
+</div>
+<div class="relative max-w-4xl mx-auto py-12">
+<div class="workflow-line"></div>
+<div class="space-y-16 relative z-10">
+<!-- Step 1 -->
+<div class="workflow-step relative scroll-reveal group">
+<div class="absolute left-6 md:left-1/2 top-0 w-5 h-5 -ml-2.5 bg-white border-2 border-secondary rounded-full z-20 workflow-dot group-hover:scale-125 group-hover:bg-secondary group-hover:border-white transition-all duration-300 shadow-sm"></div>
+<div class="workflow-content ml-16 md:ml-0 pt-0">
+<div class="bg-surface-main p-6 rounded-2xl premium-shadow border border-surface-container-highest group-hover:border-secondary/30 group-hover:shadow-md transition-all duration-300 transform group-hover:-translate-y-1">
+<div class="flex items-center gap-4 mb-3 md:flex-row-reverse">
+<div class="bg-primary-container/5 p-3 rounded-lg text-primary border border-primary/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">how_to_reg</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">1. Patient Registration</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Intelligent data capture at the entry point ensures demographic and insurance information is accurate before services are rendered.</p>
+</div>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="workflow-step relative scroll-reveal group">
+<div class="absolute left-6 md:left-1/2 top-0 w-5 h-5 -ml-2.5 bg-white border-2 border-secondary rounded-full z-20 workflow-dot group-hover:scale-125 group-hover:bg-secondary group-hover:border-white transition-all duration-300 shadow-sm"></div>
+<div class="workflow-content ml-16 md:ml-0 pt-0">
+<div class="bg-surface-main p-6 rounded-2xl premium-shadow border border-surface-container-highest group-hover:border-secondary/30 group-hover:shadow-md transition-all duration-300 transform group-hover:-translate-y-1">
+<div class="flex items-center gap-4 mb-3">
+<div class="bg-primary-container/5 p-3 rounded-lg text-primary border border-primary/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">code_blocks</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">2. Medical Coding</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">AI-assisted coding engines analyze clinical documentation to suggest the most accurate CPT and ICD-10 codes, reducing manual errors.</p>
+</div>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="workflow-step relative scroll-reveal group">
+<div class="absolute left-6 md:left-1/2 top-0 w-5 h-5 -ml-2.5 bg-white border-2 border-secondary rounded-full z-20 workflow-dot group-hover:scale-125 group-hover:bg-secondary group-hover:border-white transition-all duration-300 shadow-sm"></div>
+<div class="workflow-content ml-16 md:ml-0 pt-0">
+<div class="bg-surface-main p-6 rounded-2xl premium-shadow border border-surface-container-highest group-hover:border-secondary/30 group-hover:shadow-md transition-all duration-300 transform group-hover:-translate-y-1">
+<div class="flex items-center gap-4 mb-3 md:flex-row-reverse">
+<div class="bg-primary-container/5 p-3 rounded-lg text-primary border border-primary/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">send_and_archive</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">3. Claim Submission</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Real-time scrubbing against millions of payer rules ensures claims are pristine before they ever leave our system.</p>
+</div>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="workflow-step relative scroll-reveal group">
+<div class="absolute left-6 md:left-1/2 top-0 w-5 h-5 -ml-2.5 bg-white border-2 border-secondary rounded-full z-20 workflow-dot group-hover:scale-125 group-hover:bg-secondary group-hover:border-white transition-all duration-300 shadow-sm"></div>
+<div class="workflow-content ml-16 md:ml-0 pt-0">
+<div class="bg-surface-main p-6 rounded-2xl premium-shadow border border-surface-container-highest group-hover:border-secondary/30 group-hover:shadow-md transition-all duration-300 transform group-hover:-translate-y-1">
+<div class="flex items-center gap-4 mb-3">
+<div class="bg-primary-container/5 p-3 rounded-lg text-primary border border-primary/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">rule_folder</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">4. Insurance Review</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Automated tracking monitors claim status 24/7, immediately flagging anomalies or delays for our specialists to investigate.</p>
+</div>
+</div>
+</div>
+<!-- Step 5 -->
+<div class="workflow-step relative scroll-reveal group">
+<div class="absolute left-6 md:left-1/2 top-0 w-5 h-5 -ml-2.5 bg-white border-2 border-secondary rounded-full z-20 workflow-dot group-hover:scale-125 group-hover:bg-secondary group-hover:border-white transition-all duration-300 shadow-sm"></div>
+<div class="workflow-content ml-16 md:ml-0 pt-0">
+<div class="bg-surface-main p-6 rounded-2xl premium-shadow border border-surface-container-highest group-hover:border-secondary/30 group-hover:shadow-md transition-all duration-300 transform group-hover:-translate-y-1">
+<div class="flex items-center gap-4 mb-3 md:flex-row-reverse">
+<div class="bg-primary-container/5 p-3 rounded-lg text-primary border border-primary/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_balance_wallet</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">5. Payment Posting</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Electronic remittance advice (ERA) processing allows for precision reconciliation down to the penny, instantly updating accounts.</p>
+</div>
+</div>
+</div>
+<!-- Step 6 -->
+<div class="workflow-step relative scroll-reveal group">
+<div class="absolute left-6 md:left-1/2 top-0 w-5 h-5 -ml-2.5 bg-white border-2 border-secondary rounded-full z-20 workflow-dot group-hover:scale-125 group-hover:bg-secondary group-hover:border-white transition-all duration-300 shadow-sm"></div>
+<div class="workflow-content ml-16 md:ml-0 pt-0">
+<div class="bg-surface-main p-6 rounded-2xl premium-shadow border border-surface-container-highest bg-gradient-to-br from-surface-main to-surface-container-low group-hover:border-secondary/30 group-hover:shadow-md transition-all duration-300 transform group-hover:-translate-y-1">
+<div class="flex items-center gap-4 mb-3">
+<div class="bg-tertiary-container/10 p-3 rounded-lg text-tertiary-container border border-tertiary-container/10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">trending_up</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">6. Revenue Growth</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">The culmination of our process: accelerated cash flow, reduced days in AR, and clear visibility into practice financial health.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Technology Pillars -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-section-gap">
+<div class="text-center mb-16 scroll-reveal">
+<h2 class="font-headline-md text-headline-md text-primary mb-4">Core Technology Pillars</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Built on a foundation of security, scale, and intelligence to support modern healthcare enterprises.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[280px]">
+<!-- Cloud Infrastructure -->
+<div class="col-span-1 md:col-span-2 bg-surface-container-lowest rounded-2xl p-8 premium-shadow border border-surface-container-highest flex flex-col justify-between scroll-reveal group overflow-hidden relative transition-all duration-300 hover:shadow-lg">
+<div class="absolute right-0 top-0 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500 scale-[2.5] transform -translate-y-1/4 translate-x-1/4 text-primary">
+<span class="material-symbols-outlined text-[200px]" style="font-variation-settings: 'FILL' 0;">cloud</span>
+</div>
+<div>
+<div class="bg-primary/5 border border-primary/10 w-12 h-12 rounded-xl flex items-center justify-center text-primary mb-6 transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">cloud</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Cloud Infrastructure</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">Our 100% cloud-native architecture provides elastic scalability and supreme reliability. Access your data securely from anywhere, at any time, with 99.99% guaranteed uptime.</p>
+</div>
+</div>
+<!-- HIPAA Compliance -->
+<div class="col-span-1 bg-primary rounded-2xl p-8 shadow-lg flex flex-col justify-between scroll-reveal text-on-primary group relative overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+<div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
+<div class="relative z-10">
+<div class="bg-white/10 border border-white/20 w-12 h-12 rounded-xl flex items-center justify-center text-white mb-6 transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">gpp_good</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-primary mb-2">HIPAA Compliant</h3>
+<p class="font-body-sm text-body-sm text-primary-fixed-dim">Bank-grade security protocols, strict access controls, and comprehensive audit trails ensure patient data remains protected.</p>
+</div>
+</div>
+<!-- Analytics -->
+<div class="col-span-1 bg-surface-container-lowest rounded-2xl p-8 premium-shadow border border-surface-container-highest flex flex-col justify-between scroll-reveal group transition-all duration-300 hover:shadow-lg">
+<div>
+<div class="bg-secondary/5 border border-secondary/10 w-12 h-12 rounded-xl flex items-center justify-center text-secondary mb-6 transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">analytics</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Analytics &amp; Reporting</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Real-time insights delivered through customizable dashboards. Track KPIs and revenue metrics instantly.</p>
+</div>
+</div>
+<!-- AI Automation -->
+<div class="col-span-1 md:col-span-2 bg-gradient-to-br from-surface-container-lowest to-surface-container-low p-[1px] rounded-2xl scroll-reveal group hover:shadow-lg transition-all duration-300 border border-surface-container-highest">
+<div class="bg-transparent w-full h-full rounded-2xl p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+<div class="max-w-md">
+<div class="bg-tertiary-container/5 border border-tertiary-container/10 w-12 h-12 rounded-xl flex items-center justify-center text-tertiary-container mb-6 transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">smart_toy</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">AI Automation</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Machine learning algorithms learn from your specific denial patterns to proactively correct future claims, dramatically reducing manual intervention and accelerating cash flow.</p>
+</div>
+<div class="hidden md:flex justify-center items-center w-40 h-40">
+<!-- Tech visual representation -->
+<div class="relative w-32 h-32 rounded-full border border-secondary/20 flex items-center justify-center group-hover:border-secondary/40 transition-colors">
+<div class="absolute inset-0 rounded-full border-t border-secondary animate-spin" style="animation-duration: 3s;"></div>
+<div class="w-24 h-24 rounded-full border border-primary/20 flex items-center justify-center">
+<div class="absolute inset-2 rounded-full border-b border-primary animate-spin-reverse" style="animation-duration: 4s;"></div>
+<div class="w-16 h-16 rounded-full bg-gradient-to-tr from-secondary/10 to-primary/5 flex items-center justify-center backdrop-blur-sm border border-white/50 shadow-sm">
+<span class="material-symbols-outlined text-secondary opacity-50" style="font-variation-settings: 'FILL' 0;">psychology</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Data Security -->
+<div class="col-span-1 md:col-span-3 bg-surface-container-lowest rounded-2xl p-8 premium-shadow border border-surface-container-highest flex flex-col md:flex-row items-center justify-between scroll-reveal group hover:border-secondary/30 transition-all duration-300 hover:shadow-md">
+<div class="flex flex-col md:flex-row items-center md:items-start gap-6 mb-6 md:mb-0 text-center md:text-left">
+<div class="bg-error-container/10 border border-error/10 w-16 h-16 rounded-2xl flex items-center justify-center text-error mb-2 md:mb-0 shrink-0 group-hover:bg-error-container/20 group-hover:scale-105 transition-all duration-300">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 0;">enhanced_encryption</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">End-to-End Data Security</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-3xl">All data is encrypted in transit and at rest using AES-256 encryption. Our infrastructure undergoes regular third-party penetration testing to ensure absolute integrity.</p>
+</div>
+</div>
+<button class="shrink-0 text-secondary font-label-caps text-label-caps flex items-center gap-2 hover:text-primary transition-colors bg-secondary/5 px-6 py-3 rounded-lg hover:bg-secondary/10">
+                        VIEW SECURITY BRIEF
+                        <span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-deep w-full grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-section-gap max-w-container-max mx-auto text-on-secondary font-body-sm text-body-sm">
+<div class="col-span-1 md:col-span-1 space-y-4">
+<div class="font-headline-sm text-headline-sm font-bold text-on-secondary mb-4">
+                CarePoint Medical Billing
+            </div>
+<p class="text-on-secondary-container">© 2024 CarePoint Medical Billing LLC. All rights reserved.</p>
+</div>
+<div class="col-span-1 flex flex-col space-y-3">
+<span class="font-label-caps text-label-caps text-on-secondary mb-2 opacity-70">TECHNOLOGY</span>
+<a class="text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">HIPAA Compliant</a>
+<a class="text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">Secure Infrastructure</a>
+<a class="text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">Certified Experts</a>
+</div>
+<div class="col-span-1 flex flex-col space-y-3">
+<span class="font-label-caps text-label-caps text-on-secondary mb-2 opacity-70">SERVICES</span>
+<a class="text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">Fast Claims</a>
+<a class="text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">24/7 Support</a>
+</div>
+<div class="col-span-1 flex flex-col space-y-3">
+<span class="font-label-caps text-label-caps text-on-secondary mb-2 opacity-70">LEGAL</span>
+<a class="text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">Privacy Policy</a>
+<a class="text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">Terms of Service</a>
+<a class="text-on-secondary-container hover:text-white transition-opacity duration-200 cursor-pointer" href="#">Contact Support</a>
+</div>
+</footer>
+<script>
+        // Scroll reveal logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body></html>
